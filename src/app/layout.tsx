@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import ThemeToggle from "@/components/ThemeToggle";
 import { metadata as siteMetadata } from "./metadata";
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {children}
         <ThemeToggle />
+        <Analytics />
       </body>
     </html>
   );
