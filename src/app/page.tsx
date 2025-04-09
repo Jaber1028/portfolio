@@ -62,6 +62,93 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Education Section */}
+        <section id="education" className="py-32 bg-gradient-to-b from-black via-gray-900 to-black relative">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-5xl md:text-6xl font-bold mb-16 text-center text-white"
+            >
+              Education
+            </motion.h2>
+            <div className="space-y-8">
+              {[
+                {
+                  school: "Northeastern University",
+                  degree: "Bachelor of Science in Computer Science",
+                  period: "Sept. 2021 - May 2025",
+                  location: "Boston, MA",
+                  gpa: "3.5/4.0",
+                  relevantCourses: [
+                    "Web Development",
+                    "Mobile Development",
+                    "Object-Oriented Design",
+                    "Software Engineering",
+                    "Algorithms",
+                    "Networks and Distributed Systems",
+                    "Computer Systems"
+                  ]
+                }
+              ].map((edu, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  className="group relative bg-gradient-to-br from-gray-800/30 via-gray-800/30 to-gray-900/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 hover:bg-gray-800/40 hover:shadow-[0_0_25px_-5px] hover:shadow-blue-500/20 transform hover:-translate-y-1 hover:scale-[1.02] motion-safe:hover:animate-pulse overflow-hidden"
+                >
+                  {/* Decorative elements */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute -top-32 -right-16 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-500 group-hover:scale-150" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 relative">
+                    <div className="w-full md:w-[70%] pr-4">
+                      <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors duration-300 relative">
+                        <span className="relative inline-block max-w-full overflow-hidden">
+                          <span className="block truncate">{edu.school}</span>
+                          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 group-hover:w-full transition-all duration-500" />
+                        </span>
+                      </h3>
+                      <p className="text-blue-400/80 text-lg group-hover:text-blue-300 transition-colors duration-300 flex items-center">
+                        <span className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300 flex-shrink-0" />
+                        <span className="truncate">{edu.degree}</span>
+                      </p>
+                    </div>
+                    <div className="mt-2 md:mt-0 md:text-right md:w-[30%]">
+                      <p className="text-gray-300 text-lg group-hover:text-white transition-colors duration-300">{edu.period}</p>
+                      <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300 flex items-center justify-end">
+                        <span className="w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300 flex-shrink-0" />
+                        {edu.location}
+                      </p>
+                      <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300 mt-1">
+                        GPA: {edu.gpa}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <h4 className="text-xl font-semibold text-white mb-4">Relevant Coursework</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {edu.relevantCourses.map((course, i) => (
+                        <div key={i} className="flex items-center">
+                          <span className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300 flex-shrink-0" />
+                          <span className="text-gray-300 group-hover:text-gray-200 transition-colors duration-300">{course}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
             {/* Scroll indicator */}
             <motion.div
               initial={{ opacity: 0, y: 0 }}
