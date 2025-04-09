@@ -1,30 +1,15 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { FaDownload } from 'react-icons/fa';
+import { FaFileDownload } from 'react-icons/fa';
 
-const DownloadResume = () => {
-  const handleDownload = () => {
-    // Replace with your actual resume PDF URL
-    const resumeUrl = '/resume.pdf';
-    const link = document.createElement('a');
-    link.href = resumeUrl;
-    link.download = 'Jacob_Aberasturi_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
+export default function DownloadResume() {
   return (
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      onClick={handleDownload}
-      className="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+    <a
+      href="/resume.pdf"
+      download="Jacob_Aberasturi_Resume.pdf"
+      className="inline-flex items-center px-4 py-2 bg-blue-500/80 hover:bg-blue-500 text-white rounded-lg transition-all transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 backdrop-blur-sm"
     >
-      <FaDownload />
-      Download Resume
-    </motion.button>
+      <FaFileDownload className="text-lg mr-2" />
+      <span>Resume</span>
+    </a>
   );
-};
-
-export default DownloadResume; 
+} 

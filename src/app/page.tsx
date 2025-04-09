@@ -38,76 +38,29 @@ export default function Home() {
         </div>
 
         {/* Main content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
-          <div className="flex flex-col items-center justify-center text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="mb-8"
-            >
-              <span className="text-blue-400 text-xl md:text-2xl mb-4 block font-light">Welcome to my portfolio</span>
-              <h1 className="text-6xl md:text-8xl font-bold text-white mb-6">
-                Hi, I&apos;m Jacob Aberasturi
-              </h1>
-              <p className="text-2xl md:text-3xl text-blue-100 font-light mb-4">
-                Computer Science Student | Full Stack Developer
-              </p>
-              <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
-                Passionate about creating innovative solutions through code. 
-                Specializing in full-stack development and software engineering.
-              </p>
-            </motion.div>
+ <div id="webcrumbs" className="min-h-screen bg-neutral-100 py-8 px-4 font-body">
+      <div className="w-[1200px] mx-auto bg-white shadow-lg rounded-lg min-h-[800px]">
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex justify-center space-x-12 mb-12"
-            >
-              <a 
-                href="https://github.com/Jaber1028" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-6xl text-gray-300 hover:text-blue-400 transition-all transform hover:scale-110 hover:-translate-y-1"
-              >
-                <FaGithub />
-              </a>
-              <a 
-                href="https://linkedin.com/in/jabercodes" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-6xl text-gray-300 hover:text-blue-400 transition-all transform hover:scale-110 hover:-translate-y-1"
-              >
-                <FaLinkedin />
-              </a>
-              <a 
-                href="mailto:aberasturi.j@northeastern.edu" 
-                className="text-6xl text-gray-300 hover:text-blue-400 transition-all transform hover:scale-110 hover:-translate-y-1"
-              >
-                <FaEnvelope />
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6"
-            >
-              <a
-                href="#contact"
-                className="bg-blue-500/80 hover:bg-blue-500 text-white px-12 py-4 rounded-lg transition-all transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 text-lg font-semibold backdrop-blur-sm"
-              >
-                Get in Touch
-              </a>
-              <a
-                href="#projects"
-                className="bg-transparent hover:bg-blue-500/10 text-white px-12 py-4 rounded-lg transition-all transform hover:scale-105 border-2 border-blue-500/50 hover:border-blue-500 text-lg font-semibold"
-              >
-                View Projects
-              </a>
-            </motion.div>
+        {/* About Section */}
+        <section className="w-full py-8 px-10 rounded-lg transition-colors duration-300">
+          <h2 className="text-3xl font-bold font-title">Hi! I&apos;m Jacob Aberasturi.</h2>
+          <div className="flex mt-4">
+            <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-2 border-neutral-300">
+              <img
+                src="/profile.jpg"
+                className="object-cover w-[200px] h-[200px]"
+                alt="Profile"
+              />
+            </div>
+            <p className="text-lg max-w-[800px] ml-6">
+              I&apos;m a passionate software engineer with expertise in full-stack development.
+              I specialize in creating modern web applications using cutting-edge technologies.
+              My work spans from frontend development with React and TypeScript to backend systems with Node.js and Python.
+              I collaborate with teams to build scalable and maintainable solutions.
+              I&apos;m always learning and staying up-to-date with the latest technologies and best practices.
+            </p>
+          </div>
+        </section>
 
             {/* Scroll indicator */}
             <motion.div
@@ -124,47 +77,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-32 bg-gradient-to-b from-black via-gray-900 to-black relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-16 text-center text-white"
-          >
-            About Me
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-lg md:text-xl text-gray-300 text-center space-y-8 leading-relaxed"
-          >
-            <p>
-              I&apos;m a Computer Science student at Northeastern University with a passion for full-stack development and software engineering.
-              My experience spans across web development, mobile applications, and infrastructure testing.
-            </p>
-            <p>
-              Currently pursuing my Bachelor&apos;s degree with a 3.5/4.0 GPA, I&apos;m set to graduate in May 2025 and available for opportunities starting June 2025.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    
 
       {/* Experience Section */}
       <section id="experience" className="py-32 bg-gradient-to-b from-black via-gray-900 to-black relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-16 text-center text-white"
+            className="text-5xl md:text-6xl font-bold mb-16 text-center text-white"
           >
             Experience
           </motion.h2>
@@ -209,23 +133,49 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group"
+                className="group relative bg-gradient-to-br from-gray-800/30 via-gray-800/30 to-gray-900/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 hover:bg-gray-800/40 hover:shadow-[0_0_25px_-5px] hover:shadow-blue-500/20 transform hover:-translate-y-1 hover:scale-[1.02] motion-safe:hover:animate-pulse overflow-hidden"
               >
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">{job.title}</h3>
-                    <p className="text-blue-400/80">{job.company}</p>
+                {/* Decorative elements */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute -top-32 -right-16 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-500 group-hover:scale-150" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 relative">
+                  <div className="w-full md:w-[70%] pr-4">
+                    <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors duration-300 relative">
+                      <span className="relative inline-block max-w-full overflow-hidden">
+                        <span className="block truncate">{job.title}</span>
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 group-hover:w-full transition-all duration-500" />
+                      </span>
+                    </h3>
+                    <p className="text-blue-400/80 text-lg group-hover:text-blue-300 transition-colors duration-300 flex items-center">
+                      <span className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300 flex-shrink-0" />
+                      <span className="truncate">{job.company}</span>
+                    </p>
                   </div>
-                  <div className="mt-2 md:mt-0 md:text-right">
-                    <p className="text-gray-300">{job.period}</p>
-                    <p className="text-gray-400">{job.location}</p>
+                  <div className="mt-2 md:mt-0 md:text-right md:w-[30%]">
+                    <p className="text-gray-300 text-lg group-hover:text-white transition-colors duration-300">{job.period}</p>
+                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300 flex items-center justify-end">
+                      <span className="w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300 flex-shrink-0" />
+                      {job.location}
+                    </p>
                   </div>
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-4 relative">
                   {job.achievements.map((achievement, i) => (
-                    <li key={i} className="text-gray-300 flex items-start group-hover:text-gray-200 transition-colors">
-                      <span className="text-blue-400/80 mr-2">•</span>
-                      <span>{achievement}</span>
+                    <li key={i} className="text-gray-300 text-lg group-hover:text-gray-200 transition-all duration-300 relative hover:text-white">
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0 w-6">
+                          <span className="block w-2 h-2 mt-[0.6rem] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full group-hover:scale-125 transition-transform duration-300" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="block break-words">
+                            {achievement}
+                          </span>
+                          <span className="absolute bottom-0 left-6 right-0 h-px bg-gradient-to-r from-blue-400/50 to-purple-400/50 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                        </div>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -237,19 +187,29 @@ export default function Home() {
 
       {/* Projects Section */}
       <section id="projects" className="py-32 bg-gradient-to-b from-black via-gray-900 to-black relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-16 text-center text-white"
+            className="text-5xl md:text-6xl font-bold mb-16 text-center text-white"
           >
             Projects
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
+              {
+                title: "Fake Stack Overflow",
+                period: "Jan. 2025 - Apr. 2025",
+                tech: "TypeScript, React, Express, MongoDB, Socket.io",
+                achievements: [
+                  "Built a comprehensive Q&A platform with authentication, direct messaging, and interactive games using TypeScript and the MERN stack",
+                  "Architected a Daily Puzzles feature with automated generation algorithms that create unique logic challenges daily through cron scheduling",
+                  "Implemented real-time data synchronization across components using Socket.io for chat systems, game state updates, and leaderboard visualization"
+                ]
+              },
               {
                 title: "Parasite",
                 period: "May 2024 - June 2024",
@@ -261,6 +221,16 @@ export default function Home() {
                 ]
               },
               {
+                title: "RISC-V Processor Design",
+                period: "May 2024 - June 2024",
+                tech: "SystemVerilog, Vivado, FPGA",
+                achievements: [
+                  "Architected and implemented a pipelined RISC-V processor supporting arithmetic, branching, and memory operations, synthesized on TUL FPGA",
+                  "Designed control path using finite state machines and combinational logic for multi-cycle instruction execution",
+                  "Validated processor functionality through comprehensive testbenches and timing analysis using Vivado simulation"
+                ]
+              },
+              {
                 title: "Kanbas",
                 period: "Jan. 2024 - May 2024",
                 tech: "JavaScript, React, Node.js, MongoDB",
@@ -268,6 +238,46 @@ export default function Home() {
                   "Developed a full-stack learning management system",
                   "Architected a Single Page Application using React and Redux",
                   "Built a scalable backend using Node.js and MongoDB"
+                ]
+              },
+              {
+                title: "FitLink",
+                period: "April 2023 - May 2023",
+                tech: "Swift, UIKit, Firebase, Core Data",
+                achievements: [
+                  "Led development of social fitness application's profile and friend system features in a team of four, implementing UI layouts with UIKit and managing user relationships with Firebase",
+                  "Architected real-time data synchronization for workout posts and friend requests using Firebase Authentication and Cloud Storage",
+                  "Implemented image handling system for profile pictures and posts, including camera integration and efficient caching mechanisms"
+                ]
+              },
+              {
+                title: "FUSE File System",
+                period: "Mar. 2023 - May 2023",
+                tech: "C, FUSE, Linux",
+                achievements: [
+                  "Implemented a custom file system supporting file operations, directory hierarchies, and large file handling up to 500KB",
+                  "Designed block allocation and inode management systems for efficient disk space utilization",
+                  "Developed file system driver interfacing with Linux kernel through FUSE, supporting core operations like create, read, write, and delete"
+                ]
+              },
+              {
+                title: "Unix Shell Implementation",
+                period: "Jan. 2023 - Feb. 2023",
+                tech: "C, Linux",
+                achievements: [
+                  "Designed and implemented a Unix shell supporting process management, I/O redirection, and pipe operations using C",
+                  "Built custom tokenizer and parser for shell commands, handling nested operations and file descriptors",
+                  "Developed system call wrappers managing child processes, signal handling, and file operations"
+                ]
+              },
+              {
+                title: "Moonshot",
+                period: "Jan. 2023 - Feb. 2023",
+                tech: "Swift, SwiftUI",
+                achievements: [
+                  "Developed an interactive educational app about NASA space missions using SwiftUI's latest features and animations",
+                  "Implemented complex navigation hierarchies and custom transitions using NavigationView and GeometryReader",
+                  "Utilized JSON decoding and asset management for efficient data handling and image caching"
                 ]
               },
               {
@@ -287,16 +297,42 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group hover:bg-gray-800/40"
+                className="group relative bg-gradient-to-br from-gray-800/30 via-gray-800/30 to-gray-900/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 hover:bg-gray-800/40 hover:shadow-[0_0_25px_-5px] hover:shadow-blue-500/20 transform hover:-translate-y-1 hover:scale-[1.02] motion-safe:hover:animate-pulse overflow-hidden"
               >
-                <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">{project.title}</h3>
-                <p className="text-blue-400/80 mb-2">{project.tech}</p>
-                <p className="text-gray-400 mb-4">{project.period}</p>
-                <ul className="space-y-3">
+                {/* Decorative elements */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute -top-32 -right-16 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-500 group-hover:scale-150" />
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors duration-300 relative">
+                  <span className="relative inline-block max-w-full overflow-hidden">
+                    <span className="block truncate">{project.title}</span>
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 group-hover:w-full transition-all duration-500" />
+                  </span>
+                </h3>
+                <p className="text-blue-400/80 text-lg mb-2 group-hover:text-blue-300 transition-colors duration-300 flex items-center">
+                  <span className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300 flex-shrink-0" />
+                  <span className="truncate">{project.tech}</span>
+                </p>
+                <p className="text-gray-400 mb-4 group-hover:text-gray-300 transition-colors duration-300 flex items-center">
+                  <span className="w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-2 group-hover:scale-125 transition-transform duration-300 flex-shrink-0" />
+                  {project.period}
+                </p>
+                <ul className="space-y-4 relative">
                   {project.achievements.map((achievement, i) => (
-                    <li key={i} className="text-gray-300 flex items-start group-hover:text-gray-200 transition-colors">
-                      <span className="text-blue-400/80 mr-2">•</span>
-                      <span>{achievement}</span>
+                    <li key={i} className="text-gray-300 text-lg group-hover:text-gray-200 transition-all duration-300 relative hover:text-white">
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0 w-6">
+                          <span className="block w-2 h-2 mt-[0.6rem] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full group-hover:scale-125 transition-transform duration-300" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="block break-words">
+                            {achievement}
+                          </span>
+                          <span className="absolute bottom-0 left-6 right-0 h-px bg-gradient-to-r from-blue-400/50 to-purple-400/50 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                        </div>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -308,14 +344,14 @@ export default function Home() {
 
       {/* Skills Section */}
       <section id="skills" className="py-32 bg-gradient-to-b from-black via-gray-900 to-black relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-16 text-center text-white"
+            className="text-5xl md:text-6xl font-bold mb-16 text-center text-white"
           >
             Technical Skills
           </motion.h2>
@@ -326,17 +362,26 @@ export default function Home() {
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
-            <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group hover:bg-gray-800/40">
-              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Languages</h3>
-              <p className="text-gray-300 group-hover:text-gray-200 transition-colors">JavaScript, HTML/CSS, TypeScript, Swift, Python, C#, C++, C, Java</p>
+            <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 group hover:bg-gray-800/40 hover:shadow-lg hover:shadow-blue-500/10 relative overflow-hidden">
+              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors duration-300 relative">
+                <span className="relative z-10">Languages</span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-500" />
+              </h3>
+              <p className="text-gray-300 text-lg group-hover:text-gray-200 transition-colors duration-300 relative">Swift, Objective-C, C, C++, C#, Python, JavaScript, TypeScript, X86 & RISC-V Assembly, SystemVerilog</p>
             </div>
-            <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group hover:bg-gray-800/40">
-              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Frameworks</h3>
-              <p className="text-gray-300 group-hover:text-gray-200 transition-colors">React, Redux, Jest, Bootstrap, Node.js, UIKit, SwiftUI, pytest, JUnit, Processing</p>
+            <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 group hover:bg-gray-800/40 hover:shadow-lg hover:shadow-blue-500/10 relative overflow-hidden">
+              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors duration-300 relative">
+                <span className="relative z-10">Frameworks</span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-500" />
+              </h3>
+              <p className="text-gray-300 text-lg group-hover:text-gray-200 transition-colors duration-300 relative">SwiftUI, UIKit, CoreData, Core Animation, React, Redux, Jest, Node.js, Express, gdb, valgrind, pytest</p>
             </div>
-            <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group hover:bg-gray-800/40">
-              <h3 className="text-xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Technologies & Tools</h3>
-              <p className="text-gray-300 group-hover:text-gray-200 transition-colors">MongoDB, Firebase, Netlify, Postman, TCP/IP, Git, P4V, Xlinix, Jira, FPGA</p>
+            <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 group hover:bg-gray-800/40 hover:shadow-lg hover:shadow-blue-500/10 relative overflow-hidden">
+              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors duration-300 relative">
+                <span className="relative z-10">Technologies & Tools</span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-500" />
+              </h3>
+              <p className="text-gray-300 text-lg group-hover:text-gray-200 transition-colors duration-300 relative">Xcode, Git, CocoaPods, REST APIs, MongoDB, Firebase, TCP/IP, FPGA, Linux (Ubuntu & RedHat), FUSE, Vivado Xilinx, Postman</p>
             </div>
           </motion.div>
         </div>
@@ -344,14 +389,14 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="py-32 bg-gradient-to-b from-black via-gray-900 to-black relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-16 text-center text-white"
+            className="text-5xl md:text-6xl font-bold mb-16 text-center text-white"
           >
             Get In Touch
           </motion.h2>
@@ -362,25 +407,31 @@ export default function Home() {
             viewport={{ once: true }}
             className="max-w-2xl mx-auto text-center"
           >
-            <p className="text-lg md:text-xl text-gray-300 mb-12">
+            <p className="text-xl md:text-2xl text-gray-300 mb-12">
               I&apos;m currently looking for new opportunities. Feel free to reach out!
             </p>
-            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <a
-                href="mailto:aberasturi.j@northeastern.edu"
-                className="bg-blue-500/80 hover:bg-blue-500 text-white px-8 py-4 rounded-lg transition-all transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 font-semibold backdrop-blur-sm"
+            <a 
+                href="https://github.com/Jaber1028" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-6xl text-gray-300 hover:text-blue-400 transition-all transform hover:scale-110 hover:-translate-y-1"
               >
-                Email Me
+                <FaGithub />
               </a>
-              <a
-                href="https://linkedin.com/in/jabercodes"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-blue-500/80 hover:bg-blue-500 text-white px-8 py-4 rounded-lg transition-all transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 font-semibold backdrop-blur-sm"
+              <a 
+                href="https://linkedin.com/in/jabercodes" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-6xl text-gray-300 hover:text-blue-400 transition-all transform hover:scale-110 hover:-translate-y-1"
               >
-                LinkedIn
+                <FaLinkedin />
               </a>
-            </div>
+              <a 
+                href="mailto:aberasturi.j@northeastern.edu" 
+                className="text-6xl text-gray-300 hover:text-blue-400 transition-all transform hover:scale-110 hover:-translate-y-1"
+              >
+                <FaEnvelope />
+              </a>
           </motion.div>
         </div>
       </section>
