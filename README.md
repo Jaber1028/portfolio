@@ -75,7 +75,7 @@ This project is configured for deployment on Vercel:
 
 1. Push to the main branch
 2. Vercel will automatically deploy your changes
-3. Your site will be available at `your-project-name.vercel.app`
+3. Your site will be available at `[/portfolio-9h91m6528-jaber1028s-projects.vercel.app](https://portfolio-9h91m6528-jaber1028s-projects.vercel.app/)`
 
 ## 📄 License
 
