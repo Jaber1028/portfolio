@@ -135,7 +135,6 @@ const config: Config = {
     }
   },
   plugins: [],
-  important: '#webcrumbs'
 };
 
 export default config; 

@@ -6,31 +6,7 @@ import { SiTypescript, SiExpress, SiNodedotjs, SiMongodb, SiSocketdotio, SiReact
 import Link from 'next/link';
 import { IconType } from 'react-icons';
 
-interface TechBadgeProps {
-  icon: IconType;
-  text: string;
-}
-
-const TechBadge = ({ icon: Icon, text }: TechBadgeProps) => (
-  <div style={{ 
-    display: 'inline-flex',
-    alignItems: 'center',
-    backgroundColor: '#f3f4f6',
-    borderRadius: '9999px',
-    padding: '0.375rem 0.75rem',
-    marginRight: '1.5rem'
-  }}>
-    <Icon style={{ 
-      width: '1.25rem',
-      height: '1.25rem',
-      marginRight: '0.5rem'
-    }} />
-    <span style={{
-      fontSize: '0.875rem',
-      fontWeight: 500
-    }}>{text}</span>
-  </div>
-);
+import TechBadge from '@/components/TechBadge';
 
 const getTechIcon = (tech: string): IconType | null => {
   const iconMap: Record<string, IconType> = {
