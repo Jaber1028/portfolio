@@ -2,9 +2,73 @@
 
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { SiTypescript, SiExpress, SiNodedotjs, SiMongodb, SiSocketdotio, SiReact, SiWebgl, SiSharp, SiUnity, 
+         SiVuedotjs, SiTailwindcss, SiHtml5, SiCss3, SiSwift, SiFirebase, SiLinux, SiPython, SiC, SiCplusplus,
+         SiRedux, SiJest, SiPostman, SiGit, SiXcode, SiUbuntu, SiRedhat } from 'react-icons/si';
 import Layout from '@/components/Layout';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { IconType } from 'react-icons';
+
+interface TechBadgeProps {
+  icon: IconType;
+  text: string;
+}
+
+const TechBadge = ({ icon: Icon, text }: TechBadgeProps) => (
+  <div style={{ 
+    display: 'inline-flex',
+    alignItems: 'center',
+    backgroundColor: '#f3f4f6',
+    borderRadius: '9999px',
+    padding: '0.375rem 0.75rem',
+    marginRight: '1.5rem',
+    marginBottom: '0.5rem'
+  }}>
+    <Icon style={{ 
+      width: '1.25rem',
+      height: '1.25rem',
+      marginRight: '0.5rem'
+    }} />
+    <span style={{
+      fontSize: '0.875rem',
+      fontWeight: 500
+    }}>{text}</span>
+  </div>
+);
+
+const getTechIcon = (tech: string): IconType | null => {
+  const iconMap: Record<string, IconType> = {
+    'TypeScript': SiTypescript,
+    'Express': SiExpress,
+    'Node.js': SiNodedotjs,
+    'MongoDB': SiMongodb,
+    'Socket.io': SiSocketdotio,
+    'React': SiReact,
+    'WebGL': SiWebgl,
+    'C#': SiSharp,
+    'Unity': SiUnity,
+    'Vue.js': SiVuedotjs,
+    'Tailwind': SiTailwindcss,
+    'HTML': SiHtml5,
+    'CSS': SiCss3,
+    'Swift': SiSwift,
+    'Firebase': SiFirebase,
+    'Linux': SiLinux,
+    'Python': SiPython,
+    'C': SiC,
+    'C++': SiCplusplus,
+    'Redux': SiRedux,
+    'Jest': SiJest,
+    'Postman': SiPostman,
+    'Git': SiGit,
+    'Xcode': SiXcode,
+    'Ubuntu': SiUbuntu,
+    'RedHat': SiRedhat,
+  };
+  return iconMap[tech] || null;
+};
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -19,33 +83,43 @@ export default function Home() {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center pt-16 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
-        {/* Animated background element */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent animate-pulse" />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0.4, 0.2, 0.4] }}
-            transition={{ duration: 5, repeat: Infinity }}
-            className="absolute top-1/4 -left-32 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-          />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0.3, 0.15, 0.3] }}
-            transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-            className="absolute bottom-1/4 -right-32 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl"
-          />
-        </div>
+      <div className="w-full bg-gradient-to-br from-blue-800 to-indigo-900 font-sans">
+        {/* Header */}
+        <header className="flex justify-between items-center py-6 px-12">
+          <div className="flex items-center space-x-2">
+            <svg viewBox="0 0 24 24" className="w-8 h-8 text-white" fill="currentColor">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span className="text-white text-xl font-bold">Jacob Aberasturi</span>
+          </div>
+          <nav className="hidden md:flex space-x-8">
+            <a href="#about" className="text-white hover:text-blue-200 transition-colors duration-300">
+              About
+            </a>
+            <a href="#projects" className="text-white hover:text-blue-200 transition-colors duration-300">
+              Projects
+            </a>
+            <a href="#experience" className="text-white hover:text-blue-200 transition-colors duration-300">
+              Experience
+            </a>
+            <a href="#contact" className="text-white hover:text-blue-200 transition-colors duration-300">
+              Contact
+            </a>
+          </nav>
+        </header>
 
-        {/* Main content */}
-        <div id="webcrumbs" className="min-h-screen bg-neutral-100 py-8 px-4 font-body">
-          <div className="w-[1200px] mx-auto bg-white shadow-lg rounded-lg min-h-[800px] p-10">
-            {/* About Section */}
-            <section className="w-full py-8 px-10 rounded-lg transition-colors duration-300">
-              <h2 className="text-3xl font-bold font-title">Hi! I&apos;m Jacob Aberasturi.</h2>
-              <div className="flex mt-4">
-                <div className="w-[200px] h-[200px] rounded-full overflow-hidden border-2 border-neutral-300">
+        {/* About Section */}
+        <section id="about" className="py-20 relative">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="max-w-4xl mx-auto bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8"
+            >
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="w-48 h-48 rounded-full overflow-hidden border-2 border-blue-500/20">
                   <Image
                     src="/profile.jpeg"
                     width={200}
@@ -54,7 +128,7 @@ export default function Home() {
                     alt="Jacob Aberasturi in a blue polo shirt"
                   />
                 </div>
-                <p className="text-lg max-w-[800px] ml-6">
+                <p className="text-lg text-blue-200">
                   I&apos;m a passionate software engineer with expertise in full-stack development.
                   I specialize in creating modern web applications using cutting-edge technologies.
                   My work spans from frontend development with React and TypeScript to backend systems with Node.js and Python.
@@ -62,28 +136,44 @@ export default function Home() {
                   I&apos;m always learning and staying up-to-date with the latest technologies and best practices.
                 </p>
               </div>
-            </section>
+            </motion.div>
+          </div>
+        </section>
 
-            {/* Education Section */}
-            <section className="w-full py-8">
-              <h2 className="text-3xl font-bold text-center mb-8">Education</h2>
-              <div className="flex flex-wrap gap-8 justify-center">
-                <div className="w-[350px] h-[400px] bg-neutral-200 rounded-md p-4 transition-transform duration-300 hover:scale-105 hover:bg-neutral-300 flex flex-col">
-                  <div className="w-[350px] h-[200px] bg-white rounded-md flex items-center justify-center">
-                    <h3 className="text-3xl font-bold text-primary">NEU</h3>
+        {/* Education Section */}
+        <section id="education" className="py-20 relative">
+          <div className="container mx-auto px-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-4xl font-bold mb-12 text-center text-white"
+            >
+              Education
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="max-w-6xl mx-auto bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8"
+            >
+              <div className="grid grid-cols-10 gap-4">
+                <div className="col-start-1 col-span-4">
+                  <h3 className="text-2xl font-bold text-white mb-8">Northeastern University</h3>
+                  <div className="space-y-6">
+                    <p className="text-blue-200 text-xl">Bachelor of Science in Computer Science</p>
+                    <p className="text-blue-200 text-xl">Khoury College of Computer Sciences</p>
+                    <p className="text-blue-200 text-xl">Sept. 2021 - May 2025</p>
+                    <p className="text-blue-200 text-xl">GPA: 3.5/4.0</p>
+                    <p className="text-blue-200 text-xl">Boston, MA</p>
                   </div>
-                  <h3 className="text-xl mt-4">Northeastern University</h3>
-                  <p className="mt-2">Bachelor of Science in Computer Science</p>
-                  <p className="mt-2">Sept. 2021 - May 2025</p>
-                  <p className="mt-2">GPA: 3.5/4.0</p>
-                  <p className="mt-2">Boston, MA</p>
                 </div>
 
-                <div className="w-[350px] h-[400px] bg-neutral-200 rounded-md p-4 transition-transform duration-300 hover:scale-105 hover:bg-neutral-300 flex flex-col">
-                  <div className="w-[350px] h-[200px] bg-white rounded-md flex items-center justify-center">
-                    <h3 className="text-3xl font-bold text-primary">Courses</h3>
-                  </div>
-                  <div className="mt-4 space-y-2">
+                <div className="col-start-6 col-span-5">
+                  <h3 className="text-2xl font-bold text-white mb-8">Relevant Coursework</h3>
+                  <div className="space-y-4">
                     {[
                       "Web Development",
                       "Mobile Development",
@@ -93,226 +183,248 @@ export default function Home() {
                       "Networks and Distributed Systems",
                       "Computer Systems"
                     ].map((course, index) => (
-                      <p key={index} className="flex items-center">
-                        <span className="w-2 h-2 bg-primary rounded-full mr-2" />
-                        {course}
-                      </p>
+                      <p key={index} className="text-blue-200 text-lg">{course}</p>
                     ))}
                   </div>
                 </div>
               </div>
-            </section>
+            </motion.div>
+          </div>
+        </section>
 
-            {/* Experience Section */}
-            <section className="w-full py-8">
-              <h2 className="text-3xl font-bold text-center mb-8">Experience</h2>
-              <div className="flex flex-wrap gap-8 justify-center">
-                {[
-                  {
-                    title: "Infrastructure SQA Engineer Co-op",
-                    company: "Cisco/Acacia Communications",
-                    period: "July 2024 - Dec. 2024",
-                    location: "Maynard, MA",
-                    achievements: [
-                      "Developed automated tests suites in C#",
-                      "Optimized boot processes over an active network",
-                      "Configured and validated optical test environments"
-                    ]
-                  },
-                  {
-                    title: "Software Engineer Co-op",
-                    company: "Mercury Systems",
-                    period: "July 2023 - Dec. 2023",
-                    location: "Andover, MA",
-                    achievements: [
-                      "Developed Python automation scripts for FPGAs",
-                      "Improved package compilation time from 40 to 6 minutes",
-                      "Managed RPM repositories"
-                    ]
-                  },
-                  {
-                    title: "iOS Software Developer",
-                    company: "Oasis",
-                    period: "Jan. 2023 - May 2023",
-                    location: "Boston, MA",
-                    achievements: [
-                      "Developed a hybrid iOS application",
-                      "Implemented multilingual support"
-                    ]
-                  }
-                ].map((job, index) => (
-                  <div key={index} className="w-[350px] h-[400px] bg-neutral-200 rounded-md p-4 transition-transform duration-300 hover:scale-105 hover:bg-neutral-300 flex flex-col">
-                    <div className="w-[350px] h-[200px] bg-white rounded-md flex items-center justify-center">
-                      <h3 className="text-3xl font-bold text-primary">{job.company.split(' ')[0]}</h3>
-                    </div>
-                    <h3 className="text-xl mt-4">{job.title}</h3>
-                    <p className="mt-2">{job.period}</p>
-                    <p className="mt-2">{job.location}</p>
-                    <div className="mt-4 space-y-2">
-                      {job.achievements.map((achievement, i) => (
-                        <p key={i} className="flex items-center">
-                          <span className="w-2 h-2 bg-primary rounded-full mr-2" />
-                          {achievement}
-                        </p>
-                      ))}
-                    </div>
+        {/* Experience Section */}
+        <section id="experience" className="py-20 relative">
+          <div className="container mx-auto px-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-4xl font-bold mb-12 text-center text-white"
+            >
+              Experience
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {[
+                {
+                  title: "Infrastructure SQA Engineer Co-op",
+                  company: "Cisco/Acacia Communications",
+                  period: "July 2024 - Dec. 2024",
+                  location: "Maynard, MA",
+                  tech: ["C#", "Git"],
+                  achievements: [
+                    "Developed automated tests suites in C#",
+                    "Optimized boot processes over an active network",
+                    "Configured and validated optical test environments"
+                  ]
+                },
+                {
+                  title: "Software Engineer Co-op",
+                  company: "Mercury Systems",
+                  period: "July 2023 - Dec. 2023",
+                  location: "Andover, MA",
+                  tech: ["Python", "Linux", "Git"],
+                  achievements: [
+                    "Developed Python automation scripts for FPGAs",
+                    "Improved package compilation time from 40 to 6 minutes",
+                    "Managed RPM repositories"
+                  ]
+                },
+                {
+                  title: "iOS Software Developer",
+                  company: "Oasis",
+                  period: "Jan. 2023 - May 2023",
+                  location: "Boston, MA",
+                  tech: ["Swift", "UIKit", "Firebase"],
+                  achievements: [
+                    "Developed a hybrid iOS application",
+                    "Implemented multilingual support"
+                  ]
+                }
+              ].map((job, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                  className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <h3 className="text-2xl font-bold text-white mb-2">{job.title}</h3>
+                  <p className="text-blue-400 mb-2">{job.company}</p>
+                  <p className="text-blue-200 mb-2">{job.period}</p>
+                  <p className="text-blue-200 mb-4">{job.location}</p>
+                  <div className="flex flex-wrap mb-4">
+                    {job.tech.map((tech, i) => {
+                      const Icon = getTechIcon(tech);
+                      return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
+                    })}
                   </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Projects Section */}
-            <section className="w-full py-8">
-              <h2 className="text-3xl font-bold text-center mb-8">Projects</h2>
-              <div className="flex flex-wrap gap-8 justify-center">
-                {[
-                  {
-                    title: "Fake Stack Overflow",
-                    period: "Jan. 2025 - Apr. 2025",
-                    tech: "TypeScript, React, Express, MongoDB, Socket.io",
-                    achievements: [
-                      "Built a comprehensive Q&A platform with authentication, direct messaging, and interactive games using TypeScript and the MERN stack",
-                      "Architected a Daily Puzzles feature with automated generation algorithms that create unique logic challenges daily through cron scheduling",
-                      "Implemented real-time data synchronization across components using Socket.io for chat systems, game state updates, and leaderboard visualization"
-                    ]
-                  },
-                  {
-                    title: "Parasite",
-                    period: "May 2024 - June 2024",
-                    tech: "WebGL, C#, Unity Game Engine",
-                    achievements: [
-                      "Implemented efficient pathfinding algorithms using A* search in C#",
-                      "Designed responsive UI system interfaces",
-                      "Collaborated with a team of four using Git version control"
-                    ]
-                  },
-                  {
-                    title: "RISC-V Processor Design",
-                    period: "May 2024 - June 2024",
-                    tech: "SystemVerilog, Vivado, FPGA",
-                    achievements: [
-                      "Architected and implemented a pipelined RISC-V processor supporting arithmetic, branching, and memory operations, synthesized on TUL FPGA",
-                      "Designed control path using finite state machines and combinational logic for multi-cycle instruction execution",
-                      "Validated processor functionality through comprehensive testbenches and timing analysis using Vivado simulation"
-                    ]
-                  },
-                  {
-                    title: "Kanbas",
-                    period: "Jan. 2024 - May 2024",
-                    tech: "JavaScript, React, Node.js, MongoDB",
-                    achievements: [
-                      "Developed a full-stack learning management system",
-                      "Architected a Single Page Application using React and Redux",
-                      "Built a scalable backend using Node.js and MongoDB"
-                    ]
-                  },
-                  {
-                    title: "FitLink",
-                    period: "April 2023 - May 2023",
-                    tech: "Swift, UIKit, Firebase, Core Data",
-                    achievements: [
-                      "Led development of social fitness application's profile and friend system features in a team of four, implementing UI layouts with UIKit and managing user relationships with Firebase",
-                      "Architected real-time data synchronization for workout posts and friend requests using Firebase Authentication and Cloud Storage",
-                      "Implemented image handling system for profile pictures and posts, including camera integration and efficient caching mechanisms"
-                    ]
-                  },
-                  {
-                    title: "FUSE File System",
-                    period: "Mar. 2023 - May 2023",
-                    tech: "C, FUSE, Linux",
-                    achievements: [
-                      "Implemented a custom file system supporting file operations, directory hierarchies, and large file handling up to 500KB",
-                      "Designed block allocation and inode management systems for efficient disk space utilization",
-                      "Developed file system driver interfacing with Linux kernel through FUSE, supporting core operations like create, read, write, and delete"
-                    ]
-                  },
-                  {
-                    title: "Unix Shell Implementation",
-                    period: "Jan. 2023 - Feb. 2023",
-                    tech: "C, Linux",
-                    achievements: [
-                      "Designed and implemented a Unix shell supporting process management, I/O redirection, and pipe operations using C",
-                      "Built custom tokenizer and parser for shell commands, handling nested operations and file descriptors",
-                      "Developed system call wrappers managing child processes, signal handling, and file operations"
-                    ]
-                  },
-                  {
-                    title: "Moonshot",
-                    period: "Jan. 2023 - Feb. 2023",
-                    tech: "Swift, SwiftUI",
-                    achievements: [
-                      "Developed an interactive educational app about NASA space missions using SwiftUI's latest features and animations",
-                      "Implemented complex navigation hierarchies and custom transitions using NavigationView and GeometryReader",
-                      "Utilized JSON decoding and asset management for efficient data handling and image caching"
-                    ]
-                  },
-                  {
-                    title: "Raft Consensus Algorithm",
-                    period: "November 2022 - December 2022",
-                    tech: "Python, JSON, Sockets",
-                    achievements: [
-                      "Implemented distributed consensus using the Raft protocol",
-                      "Built a fault-tolerant key-value store",
-                      "Engineered network communication layer"
-                    ]
-                  }
-                ].map((project, index) => (
-                  <div key={index} className="w-[350px] bg-neutral-200 rounded-md p-4 transition-transform duration-300 hover:scale-105 hover:bg-neutral-300 flex flex-col">
-                    <div>
-                      <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-lg text-primary mb-2">{project.tech}</p>
-                      <p className="text-lg mb-2">{project.period}</p>
-                    </div>
-                    <div className="space-y-1 overflow-y-auto">
-                      {project.achievements.map((achievement, i) => (
-                        <p key={i} className="flex items-start">
-                          <span className="w-2 h-2 bg-primary rounded-full mr-2 mt-2 flex-shrink-0" />
-                          <span>{achievement}</span>
-                        </p>
-                      ))}
-                    </div>
+                  <div className="space-y-2">
+                    {job.achievements.map((achievement, i) => (
+                      <p key={i} className="flex items-center text-blue-200">
+                        <span className="w-2 h-2 bg-blue-400 rounded-full mr-2" />
+                        {achievement}
+                      </p>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </section>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-            {/* Skills Section */}
-            <section className="w-full py-8">
-              <h2 className="text-3xl font-bold text-center mb-8">Skills</h2>
-              <div className="flex flex-wrap gap-8 justify-center mb-16">
-                {[
-                  {
-                    category: "Languages",
-                    skills: "Swift, Objective-C, C, C++, C#, Python, JavaScript, TypeScript, X86 & RISC-V Assembly, SystemVerilog"
-                  },
-                  {
-                    category: "Frameworks",
-                    skills: "SwiftUI, UIKit, CoreData, Core Animation, React, Redux, Jest, Node.js, Express, gdb, valgrind, pytest"
-                  },
-                  {
-                    category: "Technologies & Tools",
-                    skills: "Xcode, Git, CocoaPods, REST APIs, MongoDB, Firebase, TCP/IP, FPGA, Linux (Ubuntu & RedHat), FUSE, Vivado Xilinx, Postman"
-                  }
-                ].map((skill, index) => (
-                  <div key={index} className="w-[350px] bg-neutral-200 rounded-md p-4 transition-transform duration-300 hover:scale-105 hover:bg-neutral-300">
-                    <h3 className="text-xl font-bold mb-4">{skill.category}</h3>
-                    <div className="space-y-2">
-                      {skill.skills.split(', ').map((item, i) => (
-                        <p key={i} className="flex items-start">
-                          <span className="w-2 h-2 bg-primary rounded-full mr-2 mt-2 flex-shrink-0" />
-                          <span>{item}</span>
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
+        {/* Projects Section */}
+        <section id="projects" className="py-20 relative">
+          <div className="container mx-auto px-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-4xl font-bold mb-4 text-center text-white"
+            >
+              My Projects
+            </motion.h2>
+            <p className="text-center text-blue-200 max-w-2xl mx-auto mb-12">
+              Explore my portfolio of web applications, mobile apps, and other digital creations that showcase my skills and expertise.
+            </p>
 
-            {/* Contact Section */}
-            <section className="w-full py-16">
-              <h2 className="text-3xl font-bold text-center mb-12">Get In Touch</h2>
-              <p className="text-xl md:text-2xl text-center mb-16">
+            <div className="max-w-4xl mx-auto space-y-12">
+              <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-2xl font-bold text-white">Fake Stack Overflow</h3>
+                  <a
+                    href="https://github.com/Jaber1028/fake-stack-overflow"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-blue-200 transition-colors"
+                  >
+                    <FaGithub className="text-2xl" />
+                  </a>
+                </div>
+                <div className="flex flex-wrap mb-4">
+                  {["TypeScript", "React", "Express", "MongoDB", "Socket.io"].map((tech, i) => {
+                    const Icon = getTechIcon(tech);
+                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
+                  })}
+                </div>
+                <p className="text-blue-200 mb-6">A comprehensive Q&A platform with authentication, direct messaging, and interactive games using TypeScript and the MERN stack</p>
+                <div className="space-y-2">
+                  <p className="flex items-start text-blue-200">
+                    <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
+                    <span>Built a comprehensive Q&A platform with authentication, direct messaging, and interactive games</span>
+                  </p>
+                  <p className="flex items-start text-blue-200">
+                    <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
+                    <span>Architected a Daily Puzzles feature with automated generation algorithms</span>
+                  </p>
+                  <p className="flex items-start text-blue-200">
+                    <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
+                    <span>Implemented real-time data synchronization using Socket.io</span>
+                  </p>
+                </div>
+                <p className="text-blue-200 text-sm mt-4 text-right">Jan. 2025 - Apr. 2025</p>
+              </div>
+
+              <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-2xl font-bold text-white">Kanbas</h3>
+                  <a
+                    href="https://github.com/Jaber1028/kanbas"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-blue-200 transition-colors"
+                  >
+                    <FaGithub className="text-2xl" />
+                  </a>
+                </div>
+                <div className="flex flex-wrap mb-4">
+                  {["JavaScript", "React", "Node.js", "MongoDB"].map((tech, i) => {
+                    const Icon = getTechIcon(tech);
+                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
+                  })}
+                </div>
+                <p className="text-blue-200 mb-6">A full-stack learning management system</p>
+                <div className="space-y-2">
+                  <p className="flex items-start text-blue-200">
+                    <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
+                    <span>Developed a full-stack learning management system</span>
+                  </p>
+                  <p className="flex items-start text-blue-200">
+                    <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
+                    <span>Architected a Single Page Application using React and Redux</span>
+                  </p>
+                  <p className="flex items-start text-blue-200">
+                    <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
+                    <span>Built a scalable backend using Node.js and MongoDB</span>
+                  </p>
+                </div>
+                <p className="text-blue-200 text-sm mt-4 text-right">Jan. 2024 - May 2024</p>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <Link
+                href="/projects"
+                className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
+              >
+                View All Projects
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section id="skills" className="py-20 relative">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center text-white mb-16">Skills</h2>
+            <div className="max-w-4xl mx-auto space-y-16">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-8">Languages</h3>
+                <div className="flex flex-wrap">
+                  {["Swift", "Objective-C", "C", "C++", "C#", "Python", "JavaScript", "TypeScript", "SystemVerilog"].map((tech, i) => {
+                    const Icon = getTechIcon(tech);
+                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
+                  })}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-8">Frameworks</h3>
+                <div className="flex flex-wrap">
+                  {["SwiftUI", "UIKit", "React", "Redux", "Node.js", "Express", "Jest"].map((tech, i) => {
+                    const Icon = getTechIcon(tech);
+                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
+                  })}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-8">Technologies & Tools</h3>
+                <div className="flex flex-wrap">
+                  {["Xcode", "Git", "MongoDB", "Firebase", "Linux", "Postman"].map((tech, i) => {
+                    const Icon = getTechIcon(tech);
+                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-20 relative">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="max-w-4xl mx-auto text-center"
+            >
+              <h2 className="text-4xl font-bold mb-8 text-white">Get In Touch</h2>
+              <p className="text-xl text-blue-200 mb-12">
                 I&apos;m currently looking for new opportunities. Feel free to reach out!
               </p>
               <div className="grid grid-cols-10 items-center">
@@ -342,10 +454,12 @@ export default function Home() {
                   <FaEnvelope />
                 </a>
               </div>
-            </section>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <div className="w-full h-24 bg-gradient-to-b from-transparent to-indigo-900/50 mt-12"></div>
+      </div>
     </Layout>
   );
 }
