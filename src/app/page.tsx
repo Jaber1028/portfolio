@@ -1,10 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaGit, FaJs, FaLinux, FaNode, FaPython, FaReact, FaSwift } from 'react-icons/fa';
 import { SiTypescript, SiExpress, SiNodedotjs, SiMongodb, SiSocketdotio, SiReact, SiWebgl, SiSharp, SiUnity, 
          SiVuedotjs, SiTailwindcss, SiHtml5, SiCss3, SiSwift, SiFirebase, SiLinux, SiPython, SiC, SiCplusplus,
-         SiRedux, SiJest, SiPostman, SiGit, SiXcode, SiUbuntu, SiRedhat } from 'react-icons/si';
+         SiRedux, SiJest, SiPostman, SiGit, SiXcode, SiUbuntu, SiRedhat, SiApple, SiAssemblyscript, SiCocoapods } from 'react-icons/si';
 import Layout from '@/components/Layout';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { IconType } from 'react-icons';
 
 interface TechBadgeProps {
-  icon: IconType;
+  icon?: IconType;
   text: string;
 }
 
@@ -26,11 +26,11 @@ const TechBadge = ({ icon: Icon, text }: TechBadgeProps) => (
     marginRight: '1.5rem',
     marginBottom: '0.5rem'
   }}>
-    <Icon style={{ 
+    {Icon && <Icon style={{ 
       width: '1.25rem',
       height: '1.25rem',
       marginRight: '0.5rem'
-    }} />
+    }} />}
     <span style={{
       fontSize: '0.875rem',
       fontWeight: 500
@@ -66,6 +66,10 @@ const getTechIcon = (tech: string): IconType | null => {
     'Xcode': SiXcode,
     'Ubuntu': SiUbuntu,
     'RedHat': SiRedhat,
+    'Apple': SiApple,
+    'Csharp': SiSharp,
+    'Assemblyscript': SiAssemblyscript,
+    'Cocoapods': SiCocoapods,
   };
   return iconMap[tech] || null;
 };
@@ -375,38 +379,50 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Skills Section */}
-        <section id="skills" className="py-20 relative">
+       {/* Skills Section */}
+       <section id="skills" className="py-20 relative">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center text-white mb-16">Skills</h2>
-            <div className="max-w-4xl mx-auto space-y-16">
+            <div className="space-y-12">
               <div>
-                <h3 className="text-2xl font-bold text-white mb-8">Languages</h3>
-                <div className="flex flex-wrap">
-                  {["Swift", "Objective-C", "C", "C++", "C#", "Python", "JavaScript", "TypeScript", "SystemVerilog"].map((tech, i) => {
-                    const Icon = getTechIcon(tech);
-                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
-                  })}
+                <h3 className="text-xl font-semibold mb-4 text-gray-200">Languages</h3>
+                <div className="flex flex-wrap gap-4">
+                  <TechBadge icon={FaSwift} text="Swift" />
+                  <TechBadge icon={SiApple} text="Objective-C" />
+                  <TechBadge icon={SiC} text="C" />
+                  <TechBadge icon={SiCplusplus} text="C++" />
+                  <TechBadge icon={SiSharp} text="C#" />
+                  <TechBadge icon={FaPython} text="Python" />
+                  <TechBadge icon={FaJs} text="JavaScript" />
+                  <TechBadge icon={SiTypescript} text="TypeScript" />
+                  <TechBadge icon={SiAssemblyscript} text="Assembly" />
                 </div>
               </div>
-
               <div>
-                <h3 className="text-2xl font-bold text-white mb-8">Frameworks</h3>
-                <div className="flex flex-wrap">
-                  {["SwiftUI", "UIKit", "React", "Redux", "Node.js", "Express", "Jest"].map((tech, i) => {
-                    const Icon = getTechIcon(tech);
-                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
-                  })}
+                <h3 className="text-xl font-semibold mb-4 text-gray-200">Frameworks</h3>
+                <div className="flex flex-wrap gap-4">
+                  <TechBadge icon={SiSwift} text="SwiftUI" />
+                  <TechBadge icon={SiApple} text="UIKit" />
+                  <TechBadge icon={SiApple} text="CoreData" />
+                  <TechBadge icon={FaReact} text="React" />
+                  <TechBadge icon={SiRedux} text="Redux" />
+                  <TechBadge icon={SiJest} text="Jest" />
+                  <TechBadge icon={FaNode} text="Node.js" />
+                  <TechBadge icon={SiExpress} text="Express" />
+                  <TechBadge icon={SiPython} text="pytest" />
                 </div>
               </div>
-
               <div>
-                <h3 className="text-2xl font-bold text-white mb-8">Technologies & Tools</h3>
-                <div className="flex flex-wrap">
-                  {["Xcode", "Git", "MongoDB", "Firebase", "Linux", "Postman"].map((tech, i) => {
-                    const Icon = getTechIcon(tech);
-                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
-                  })}
+                <h3 className="text-xl font-semibold mb-4 text-gray-200">Technologies & Tools</h3>
+                <div className="flex flex-wrap gap-4">
+                  <TechBadge icon={SiXcode} text="Xcode" />
+                  <TechBadge icon={FaGit} text="Git" />
+                  <TechBadge icon={SiCocoapods} text="CocoaPods" />
+                  <TechBadge icon={SiPostman} text="REST APIs" />
+                  <TechBadge icon={SiMongodb} text="MongoDB" />
+                  <TechBadge icon={SiFirebase} text="Firebase" />
+                  <TechBadge icon={FaLinux} text="Linux" />
+                  <TechBadge icon={SiPostman} text="Postman" />
                 </div>
               </div>
             </div>
