@@ -1,4 +1,5 @@
 import { IconType } from 'react-icons';
+import { FaApple, FaEnvelope, FaGithub, FaJs, FaLinkedin } from 'react-icons/fa';
 import { 
   SiTypescript, 
   SiExpress, 
@@ -9,15 +10,29 @@ import {
   SiWebgl, 
   SiSharp, 
   SiUnity, 
-  SiVuedotjs, 
+  SiVuedotjs,
   SiTailwindcss, 
   SiHtml5, 
   SiCss3, 
   SiSwift, 
   SiFirebase, 
   SiLinux, 
-  SiPython 
+  SiPython,
+  SiC,
+  SiCplusplus,
+  SiJson,
+  SiRedux,
+  SiJest,
+  SiPostman,
+  SiGit,
+  SiXcode,
+  SiUbuntu,
+  SiRedhat,
+  SiApple,
+  SiAssemblyscript,
+  SiCocoapods
 } from 'react-icons/si';
+
 
 const iconMap: Record<string, IconType> = {
   'TypeScript': SiTypescript,
@@ -37,6 +52,36 @@ const iconMap: Record<string, IconType> = {
   'Firebase': SiFirebase,
   'Linux': SiLinux,
   'Python': SiPython,
+  'C': SiC,
+  'C++': SiCplusplus,
+  'JSON': SiJson,
+  'FUSE': SiLinux,
+  'Redux': SiRedux,
+  'Jest': SiJest,
+  'Postman': SiPostman,
+  'Git': SiGit,
+  'Xcode': SiXcode,
+  'Ubuntu': SiUbuntu,
+  'RedHat': SiRedhat,
+  'Apple': SiApple,
+  'Csharp': SiSharp,
+  'Assemblyscript': SiAssemblyscript,
+  'CocoaPods': SiCocoapods,
+  'Github': FaGithub,
+  'Linkedin': FaLinkedin,
+  'Envelope': FaEnvelope,
+  'JavaScript': FaJs,
+  'UIKit': FaApple,
+  'SwiftUI': FaApple,
+  'Core Data': FaApple,
+  'Core ML': FaApple,
+  'pytest': SiPython,
+  'REST APIs': SiPostman,
+  'CoreData': SiApple,
+  'Objective-C': SiApple,
+  'Assembly': SiAssemblyscript
+
+
 };
 
 export const getTechIcon = (tech: string): IconType | null => {

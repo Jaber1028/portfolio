@@ -7,7 +7,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div id="webcrumbs" className="min-h-screen py-8 px-4 font-body transition-colors duration-200">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1094px] mx-auto">
         {/* Main Content */}
         <main className="p-4 sm:p-6 md:p-8">
           {children}

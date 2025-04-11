@@ -1,52 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaGit, FaJs, FaLinux, FaNode, FaPython, FaReact, FaSwift } from 'react-icons/fa';
-import { SiTypescript, SiExpress, SiNodedotjs, SiMongodb, SiSocketdotio, SiReact, SiWebgl, SiSharp, SiUnity, 
-         SiVuedotjs, SiTailwindcss, SiHtml5, SiCss3, SiSwift, SiFirebase, SiLinux, SiPython, SiC, SiCplusplus,
-         SiRedux, SiJest, SiPostman, SiGit, SiXcode, SiUbuntu, SiRedhat, SiApple, SiAssemblyscript, SiCocoapods } from 'react-icons/si';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import Layout from '@/components/Layout';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { IconType } from 'react-icons';
 import TechBadge from '@/components/TechBadge';
-
-const getTechIcon = (tech: string): IconType | null => {
-  const iconMap: Record<string, IconType> = {
-    'TypeScript': SiTypescript,
-    'Express': SiExpress,
-    'Node.js': SiNodedotjs,
-    'MongoDB': SiMongodb,
-    'Socket.io': SiSocketdotio,
-    'React': SiReact,
-    'WebGL': SiWebgl,
-    'C#': SiSharp,
-    'Unity': SiUnity,
-    'Vue.js': SiVuedotjs,
-    'Tailwind': SiTailwindcss,
-    'HTML': SiHtml5,
-    'CSS': SiCss3,
-    'Swift': SiSwift,
-    'Firebase': SiFirebase,
-    'Linux': SiLinux,
-    'Python': SiPython,
-    'C': SiC,
-    'C++': SiCplusplus,
-    'Redux': SiRedux,
-    'Jest': SiJest,
-    'Postman': SiPostman,
-    'Git': SiGit,
-    'Xcode': SiXcode,
-    'Ubuntu': SiUbuntu,
-    'RedHat': SiRedhat,
-    'Apple': SiApple,
-    'Csharp': SiSharp,
-    'Assemblyscript': SiAssemblyscript,
-    'Cocoapods': SiCocoapods,
-  };
-  return iconMap[tech] || null;
-};
+import { getTechIcon } from '@/app/utils/techIcons';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -327,42 +288,28 @@ export default function Home() {
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-200">Languages</h3>
                 <div className="flex flex-wrap gap-4">
-                  <TechBadge icon={FaSwift} text="Swift" />
-                  <TechBadge icon={SiApple} text="Objective-C" />
-                  <TechBadge icon={SiC} text="C" />
-                  <TechBadge icon={SiCplusplus} text="C++" />
-                  <TechBadge icon={SiSharp} text="C#" />
-                  <TechBadge icon={FaPython} text="Python" />
-                  <TechBadge icon={FaJs} text="JavaScript" />
-                  <TechBadge icon={SiTypescript} text="TypeScript" />
-                  <TechBadge icon={SiAssemblyscript} text="Assembly" />
+                  {["Swift", "Objective-C", "C", "C++", "C#", "Python", "JavaScript", "TypeScript", "Assembly"].map((tech, i) => {
+                    const Icon = getTechIcon(tech);
+                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
+                  })}
                 </div>
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-200">Frameworks</h3>
                 <div className="flex flex-wrap gap-4">
-                  <TechBadge icon={SiSwift} text="SwiftUI" />
-                  <TechBadge icon={SiApple} text="UIKit" />
-                  <TechBadge icon={SiApple} text="CoreData" />
-                  <TechBadge icon={FaReact} text="React" />
-                  <TechBadge icon={SiRedux} text="Redux" />
-                  <TechBadge icon={SiJest} text="Jest" />
-                  <TechBadge icon={FaNode} text="Node.js" />
-                  <TechBadge icon={SiExpress} text="Express" />
-                  <TechBadge icon={SiPython} text="pytest" />
+                  {["SwiftUI", "UIKit", "CoreData", "React", "Redux", "Jest", "Node.js", "Express", "pytest"].map((tech, i) => {
+                    const Icon = getTechIcon(tech);
+                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
+                  })}
                 </div>
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-200">Technologies & Tools</h3>
                 <div className="flex flex-wrap gap-4">
-                  <TechBadge icon={SiXcode} text="Xcode" />
-                  <TechBadge icon={FaGit} text="Git" />
-                  <TechBadge icon={SiCocoapods} text="CocoaPods" />
-                  <TechBadge icon={SiPostman} text="REST APIs" />
-                  <TechBadge icon={SiMongodb} text="MongoDB" />
-                  <TechBadge icon={SiFirebase} text="Firebase" />
-                  <TechBadge icon={FaLinux} text="Linux" />
-                  <TechBadge icon={SiPostman} text="Postman" />
+                  {["Xcode", "Git", "CocoaPods", "REST APIs", "MongoDB", "Firebase", "Linux", "Postman"].map((tech, i) => {
+                    const Icon = getTechIcon(tech);
+                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
+                  })}
                 </div>
               </div>
             </div>
