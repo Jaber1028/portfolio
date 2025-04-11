@@ -256,14 +256,7 @@ export default function Home() {
               <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-2xl font-bold text-white">Fake Stack Overflow</h3>
-                  <a
-                    href="https://github.com/Jaber1028/fake-stack-overflow"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white hover:text-blue-200 transition-colors"
-                  >
-                    <FaGithub className="text-2xl" />
-                  </a>
+                  <p className="text-blue-200">Jan. 2025 - Apr. 2025</p>
                 </div>
                 <div className="flex flex-wrap mb-4">
                   {["TypeScript", "React", "Express", "MongoDB", "Socket.io"].map((tech, i) => {
@@ -271,35 +264,26 @@ export default function Home() {
                     return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
                   })}
                 </div>
-                <p className="text-blue-200 mb-6">A comprehensive Q&A platform with authentication, direct messaging, and interactive games using TypeScript and the MERN stack</p>
                 <div className="space-y-2">
                   <p className="flex items-start text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                    <span>Built a comprehensive Q&A platform with authentication, direct messaging, and interactive games</span>
+                    <span>Built a comprehensive Q&A platform with authentication, direct messaging, and interactive games using TypeScript and the MERN stack</span>
                   </p>
                   <p className="flex items-start text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                    <span>Architected a Daily Puzzles feature with automated generation algorithms</span>
+                    <span>Architected a Daily Puzzles feature with automated generation algorithms that create unique logic challenges daily through cron scheduling</span>
                   </p>
                   <p className="flex items-start text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                    <span>Implemented real-time data synchronization using Socket.io</span>
+                    <span>Implemented real-time data synchronization across components using Socket.io for chat systems, game state updates, and leaderboard visualization</span>
                   </p>
                 </div>
-                <p className="text-blue-200 text-sm mt-4 text-right">Jan. 2025 - Apr. 2025</p>
               </div>
 
               <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-2xl font-bold text-white">Kanbas</h3>
-                  <a
-                    href="https://github.com/Jaber1028/kanbas"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white hover:text-blue-200 transition-colors"
-                  >
-                    <FaGithub className="text-2xl" />
-                  </a>
+                  <p className="text-blue-200">Jan. 2024 - May 2024</p>
                 </div>
                 <div className="flex flex-wrap mb-4">
                   {["JavaScript", "React", "Node.js", "MongoDB"].map((tech, i) => {
@@ -307,22 +291,20 @@ export default function Home() {
                     return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
                   })}
                 </div>
-                <p className="text-blue-200 mb-6">A full-stack learning management system</p>
                 <div className="space-y-2">
                   <p className="flex items-start text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                    <span>Developed a full-stack learning management system</span>
+                    <span>Developed a full-stack learning management system inspired by Canvas, featuring course creation, assignment management, and grading</span>
                   </p>
                   <p className="flex items-start text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                    <span>Architected a Single Page Application using React and Redux</span>
+                    <span>Architected a Single Page Application (SPA) using React and Redux for state management, enabling seamless user experience</span>
                   </p>
                   <p className="flex items-start text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                    <span>Built a scalable backend using Node.js and MongoDB</span>
+                    <span>Built a scalable backend using Node.js and MongoDB, implementing RESTful API endpoints for efficient data operations</span>
                   </p>
                 </div>
-                <p className="text-blue-200 text-sm mt-4 text-right">Jan. 2024 - May 2024</p>
               </div>
             </div>
 
