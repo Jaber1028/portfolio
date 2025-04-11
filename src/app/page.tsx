@@ -394,13 +394,13 @@ export default function Home() {
               <p className="text-xl text-blue-200 mb-12">
                 I&apos;m currently looking for new opportunities. Feel free to reach out!
               </p>
-              <div className="grid grid-cols-10 items-center">
+              <div className="grid grid-cols-10 items-center relative z-50">
                 <a 
                   href="https://github.com/Jaber1028" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   style={{ fontSize: '4rem' }}
-                  className="col-start-3 col-span-2 flex justify-center p-6 hover:text-primary transition-all duration-300 hover:scale-110"
+                  className="col-start-3 col-span-2 flex justify-center p-6 text-white hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
                 >
                   <FaGithub />
                 </a>
@@ -409,14 +409,14 @@ export default function Home() {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   style={{ fontSize: '4rem' }}
-                  className="col-start-5 col-span-2 flex justify-center p-6 hover:text-primary transition-all duration-300 hover:scale-110"
+                  className="col-start-5 col-span-2 flex justify-center p-6 text-white hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
                 >
                   <FaLinkedin />
                 </a>
                 <a 
                   href="mailto:aberasturi.j@northeastern.edu"
                   style={{ fontSize: '4rem' }}
-                  className="col-start-7 col-span-2 flex justify-center p-6 hover:text-primary transition-all duration-300 hover:scale-110"
+                  className="col-start-7 col-span-2 flex justify-center p-6 text-white hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
                 >
                   <FaEnvelope />
                 </a>
