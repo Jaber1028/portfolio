@@ -89,6 +89,7 @@ export default function Home() {
         {/* About Section */}
         <section id="about" className="py-20 relative">
           <div className="container mx-auto px-4">
+            <h2 className="section-title">About</h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -121,15 +122,7 @@ export default function Home() {
         {/* Education Section */}
         <section id="education" className="py-20 relative">
           <div className="container mx-auto px-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-4xl font-bold mb-12 text-center text-white"
-            >
-              Education
-            </motion.h2>
+            <h2 className="section-title">Education</h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -173,15 +166,7 @@ export default function Home() {
         {/* Experience Section */}
         <section id="experience" className="py-20 relative">
           <div className="container mx-auto px-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-4xl font-bold mb-12 text-center text-white"
-            >
-              Experience
-            </motion.h2>
+            <h2 className="section-title">Experience</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
                 {
@@ -255,15 +240,7 @@ export default function Home() {
         {/* Projects Section */}
         <section id="projects" className="py-20 relative">
           <div className="container mx-auto px-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-4xl font-bold mb-4 text-center text-white"
-            >
-              My Projects
-            </motion.h2>
+            <h2 className="section-title">My Projects</h2>
             <p className="text-center text-blue-200 max-w-2xl mx-auto mb-12">
               Explore my portfolio of web applications, mobile apps, and other digital creations that showcase my skills and expertise.
             </p>
@@ -345,7 +322,7 @@ export default function Home() {
             <div className="text-center mt-12">
               <Link
                 href="/projects"
-                className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
+                className="button-primary"
               >
                 View All Projects
               </Link>
@@ -356,7 +333,7 @@ export default function Home() {
        {/* Skills Section */}
        <section id="skills" className="py-20 relative">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-white mb-16">Skills</h2>
+            <h2 className="section-title">Skills</h2>
             <div className="space-y-12">
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-200">Languages</h3>
@@ -406,6 +383,7 @@ export default function Home() {
         {/* Contact Section */}
         <section id="contact" className="py-20 relative">
           <div className="container mx-auto px-4">
+            <h2 className="section-title">Get In Touch</h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -413,7 +391,6 @@ export default function Home() {
               viewport={{ once: true }}
               className="max-w-4xl mx-auto text-center"
             >
-              <h2 className="text-4xl font-bold mb-8 text-white">Get In Touch</h2>
               <p className="text-xl text-blue-200 mb-12">
                 I&apos;m currently looking for new opportunities. Feel free to reach out!
               </p>
