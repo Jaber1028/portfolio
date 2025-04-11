@@ -30,9 +30,8 @@ import {
   SiRedhat,
   SiApple,
   SiAssemblyscript,
-  SiCocoapods
+  SiCocoapods,
 } from 'react-icons/si';
-
 
 const iconMap: Record<string, IconType> = {
   'TypeScript': SiTypescript,
@@ -79,9 +78,11 @@ const iconMap: Record<string, IconType> = {
   'REST APIs': SiPostman,
   'CoreData': SiApple,
   'Objective-C': SiApple,
-  'Assembly': SiAssemblyscript
-
-
+  'Assembly': SiAssemblyscript,
+  'SystemVerilog': SiAssemblyscript,
+  'Vivado': SiAssemblyscript,
+  'FPGA': SiAssemblyscript,
+  'Sockets': SiSocketdotio
 };
 
 export const getTechIcon = (tech: string): IconType | null => {

@@ -50,7 +50,7 @@ export default function Projects() {
     },
     {
       title: "RISC-V Processor Design",
-      tech: ["C", "Linux"],
+      tech: ["SystemVerilog", "Vivado", "FPGA", "Linux"],
       description: "A pipelined RISC-V processor supporting arithmetic, branching, and memory operations",
       achievements: [
         "Architected and implemented a pipelined RISC-V processor supporting arithmetic, branching, and memory operations, synthesized on TUL FPGA",
