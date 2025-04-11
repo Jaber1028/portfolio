@@ -176,9 +176,9 @@ export default function Home() {
                   location: "Maynard, MA",
                   tech: ["C#", "Git"],
                   achievements: [
-                    "Developed automated tests suites in C#",
-                    "Optimized boot processes over an active network",
-                    "Configured and validated optical test environments"
+                    "Developed automated tests suites in C# for Acacia's next-generation Pluggable Coherent Optical Module products",
+                    "Optimized boot processes over an active network, resulting in reduced downtime and improved system performance",
+                    "Configured and validated optical test environments, including fiber connectivity setup and test instrument calibration"
                   ]
                 },
                 {
@@ -188,9 +188,9 @@ export default function Home() {
                   location: "Andover, MA",
                   tech: ["Python", "Linux", "Git"],
                   achievements: [
-                    "Developed Python automation scripts for FPGAs",
-                    "Improved package compilation time from 40 to 6 minutes",
-                    "Managed RPM repositories"
+                    "Developed Python automation scripts for FPGAs to streamline codebase migration from ClearCase to BitBucket, reducing manual migration time significantly",
+                    "Improved package compilation time from 40 to 6 minutes, saving approximately 100 engineering hours monthly",
+                    "Managed RPM repositories to maintain and optimize software packages, improving package stability and performance by 25%"
                   ]
                 },
                 {
@@ -200,8 +200,9 @@ export default function Home() {
                   location: "Boston, MA",
                   tech: ["Swift", "UIKit", "Firebase"],
                   achievements: [
-                    "Developed a hybrid iOS application",
-                    "Implemented multilingual support"
+                    "Architected and developed a hybrid iOS application using SwiftUI for modern interface design while maintaining UIKit compatibility",
+                    "Implemented comprehensive localization system supporting multiple languages through third-party translation APIs",
+                    "Built reusable UI components and custom animations enhancing user experience and interface responsiveness"
                   ]
                 }
               ].map((job, index) => (
@@ -213,11 +214,17 @@ export default function Home() {
                   viewport={{ once: true }}
                   className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
                 >
-                  <h3 className="text-2xl font-bold text-white mb-2">{job.title}</h3>
-                  <p className="text-blue-400 mb-2">{job.company}</p>
-                  <p className="text-blue-200 mb-2">{job.period}</p>
-                  <p className="text-blue-200 mb-4">{job.location}</p>
-                  <div className="flex flex-wrap mb-4">
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2">{job.title}</h3>
+                      <p className="text-blue-400 mb-2">{job.company}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-blue-200 mb-2">{job.period}</p>
+                      <p className="text-blue-200">{job.location}</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap mb-4 mt-4">
                     {job.tech.map((tech, i) => {
                       const Icon = getTechIcon(tech);
                       return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
