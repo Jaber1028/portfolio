@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="w-full bg-gradient-to-br from-blue-800 to-indigo-900 font-sans">
+      <div className="w-full font-sans">
         {/* Header */}
         <header className="flex justify-between items-center py-6 px-12">
           <div className="flex items-center space-x-2">
@@ -59,14 +59,18 @@ export default function Home() {
               className="max-w-4xl mx-auto bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8"
             >
               <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="w-48 h-48 rounded-full overflow-hidden border-2 border-blue-500/20">
-                  <Image
-                    src="/profile.jpeg"
-                    width={200}
-                    height={200}
-                    className="object-cover"
-                    alt="Jacob Aberasturi in a blue polo shirt"
-                  />
+                <div className="w-48 h-48 overflow-hidden relative">
+                  <div className="absolute inset-0" style={{
+                    clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
+                  }}>
+                    <Image
+                      src="/profile.jpeg"
+                      width={200}
+                      height={200}
+                      className="object-cover w-full h-full"
+                      alt="Jacob Aberasturi in a blue polo shirt"
+                    />
+                  </div>
                 </div>
                 <p className="text-lg text-blue-200">
                   I&apos;m a passionate software engineer with expertise in full-stack development.
