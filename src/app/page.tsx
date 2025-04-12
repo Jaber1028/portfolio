@@ -22,33 +22,33 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="w-full font-sans">
+      <div className="w-full bg-gray-50/50 dark:bg-gray-900/95 font-sans">
         {/* Header */}
         <header className="flex justify-between items-center py-6 px-12">
           <div className="flex items-center space-x-2">
-            <svg viewBox="0 0 24 24" className="w-8 h-8 text-white" fill="currentColor">
+            <svg viewBox="0 0 24 24" className="w-8 h-8 text-gray-800 dark:text-white" fill="currentColor">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span className="text-white text-xl font-bold">Jacob Aberasturi</span>
+            <span className="text-gray-800 dark:text-white text-xl font-bold">Jacob Aberasturi</span>
           </div>
           <nav className="hidden md:flex space-x-8">
-            <a href="#about" className="text-white hover:text-blue-200 transition-colors duration-300">
+            <a href="#about" className="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">
               About
             </a>
-            <a href="#projects" className="text-white hover:text-blue-200 transition-colors duration-300">
+            <a href="#projects" className="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">
               Projects
             </a>
-            <a href="#experience" className="text-white hover:text-blue-200 transition-colors duration-300">
+            <a href="#experience" className="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">
               Experience
             </a>
-            <a href="#contact" className="text-white hover:text-blue-200 transition-colors duration-300">
+            <a href="#contact" className="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">
               Contact
             </a>
           </nav>
         </header>
 
         {/* About Section */}
-        <section id="about" className="py-20 relative">
+        <section id="about">
           <div className="container mx-auto px-4">
             <h2 className="section-title">About</h2>
             <motion.div
@@ -56,23 +56,23 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="max-w-4xl mx-auto bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8"
+              className="max-w-4xl mx-auto flex flex-col items-center"
             >
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="w-48 h-48 overflow-hidden relative">
-                  <div className="absolute inset-0" style={{
-                    clipPath: "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
-                  }}>
-                    <Image
-                      src="/profile.jpeg"
-                      width={200}
-                      height={200}
-                      className="object-cover w-full h-full"
-                      alt="Jacob Aberasturi in a blue polo shirt"
-                    />
-                  </div>
+              <div className="w-48 h-48 overflow-hidden relative mb-8">
+                <div className="absolute inset-0" style={{
+                  clipPath: "circle(50% at 50% 50%)",
+                }}>
+                  <Image
+                    src="/profile.jpeg"
+                    width={250}
+                    height={250}
+                    className="object-cover w-full h-full"
+                    alt="Jacob Aberasturi in a blue polo shirt"
+                  />
                 </div>
-                <p className="text-lg text-blue-200">
+              </div>
+              <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8 shadow-xl">
+                <p className="text-gray-600 dark:text-gray-200">
                   I&apos;m a passionate software engineer with expertise in full-stack development.
                   I specialize in creating modern web applications using cutting-edge technologies.
                   My work spans from frontend development with React and TypeScript to backend systems with Node.js and Python.
@@ -93,22 +93,22 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="max-w-6xl mx-auto bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8"
+              className="max-w-6xl mx-auto bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8"
             >
               <div className="grid grid-cols-10 gap-4">
                 <div className="col-start-1 col-span-4">
-                  <h3 className="text-2xl font-bold text-white mb-8">Northeastern University</h3>
+                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-8">Northeastern University</h3>
                   <div className="space-y-6">
-                    <p className="text-blue-200 text-xl">Bachelor of Science in Computer Science</p>
-                    <p className="text-blue-200 text-xl">Khoury College of Computer Sciences</p>
-                    <p className="text-blue-200 text-xl">Sept. 2021 - May 2025</p>
-                    <p className="text-blue-200 text-xl">GPA: 3.5/4.0</p>
-                    <p className="text-blue-200 text-xl">Boston, MA</p>
+                    <p className="text-gray-700 dark:text-blue-200 text-xl">Bachelor of Science in Computer Science</p>
+                    <p className="text-gray-700 dark:text-blue-200 text-xl">Khoury College of Computer Sciences</p>
+                    <p className="text-gray-700 dark:text-blue-200 text-xl">Sept. 2021 - May 2025</p>
+                    <p className="text-gray-700 dark:text-blue-200 text-xl">GPA: 3.5/4.0</p>
+                    <p className="text-gray-700 dark:text-blue-200 text-xl">Boston, MA</p>
                   </div>
                 </div>
 
                 <div className="col-start-6 col-span-5">
-                  <h3 className="text-2xl font-bold text-white mb-8">Relevant Coursework</h3>
+                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-8">Relevant Coursework</h3>
                   <div className="space-y-4">
                     {[
                       "Web Development",
@@ -119,7 +119,7 @@ export default function Home() {
                       "Networks and Distributed Systems",
                       "Computer Systems"
                     ].map((course, index) => (
-                      <p key={index} className="text-blue-200 text-lg">{course}</p>
+                      <p key={index} className="text-gray-700 dark:text-blue-200 text-lg">{course}</p>
                     ))}
                   </div>
                 </div>
@@ -129,7 +129,7 @@ export default function Home() {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="py-20 relative">
+        <section id="experience">
           <div className="container mx-auto px-4">
             <h2 className="section-title">Experience</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -177,29 +177,29 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   viewport={{ once: true }}
-                  className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                  className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 min-w-[300px] w-full h-full"
                 >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-2xl font-bold text-white mb-2">{job.title}</h3>
-                      <p className="text-blue-400 mb-2">{job.company}</p>
+                  <div className="flex flex-col mb-6">
+                    <div className="mb-4">
+                      <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{job.title}</h3>
+                      <p className="text-gray-700 dark:text-blue-400 text-base">{job.company}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-blue-200 mb-2">{job.period}</p>
-                      <p className="text-blue-200">{job.location}</p>
+                      <p className="text-gray-600 dark:text-blue-200 text-sm whitespace-nowrap mb-1">{job.period}</p>
+                      <p className="text-gray-600 dark:text-blue-200 text-sm">{job.location}</p>
                     </div>
                   </div>
-                  <div className="flex flex-wrap mb-4 mt-4">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {job.tech.map((tech, i) => {
                       const Icon = getTechIcon(tech);
                       return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
                     })}
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {job.achievements.map((achievement, i) => (
-                      <p key={i} className="flex items-center text-blue-200">
-                        <span className="w-2 h-2 bg-blue-400 rounded-full mr-2" />
-                        {achievement}
+                      <p key={i} className="flex items-start text-gray-700 dark:text-blue-200 text-sm">
+                        <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 mt-1.5 flex-shrink-0" />
+                        <span>{achievement}</span>
                       </p>
                     ))}
                   </div>
@@ -213,15 +213,15 @@ export default function Home() {
         <section id="projects" className="py-20 relative">
           <div className="container mx-auto px-4">
             <h2 className="section-title">My Projects</h2>
-            <p className="text-center text-blue-200 max-w-2xl mx-auto mb-12">
+            <p className="text-center text-gray-600 dark:text-blue-200 max-w-2xl mx-auto mb-12">
               Explore my portfolio of web applications, mobile apps, and other digital creations that showcase my skills and expertise.
             </p>
 
             <div className="max-w-4xl mx-auto space-y-12">
-              <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8">
+              <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-2xl font-bold text-white">Fake Stack Overflow</h3>
-                  <p className="text-blue-200">Jan. 2025 - Apr. 2025</p>
+                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Fake Stack Overflow</h3>
+                  <p className="text-gray-600 dark:text-blue-200">Jan. 2025 - Apr. 2025</p>
                 </div>
                 <div className="flex flex-wrap mb-4">
                   {["TypeScript", "React", "Express", "MongoDB", "Socket.io"].map((tech, i) => {
@@ -230,25 +230,25 @@ export default function Home() {
                   })}
                 </div>
                 <div className="space-y-2">
-                  <p className="flex items-start text-blue-200">
+                  <p className="flex items-start text-gray-700 dark:text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
                     <span>Built a comprehensive Q&A platform with authentication, direct messaging, and interactive games using TypeScript and the MERN stack</span>
                   </p>
-                  <p className="flex items-start text-blue-200">
+                  <p className="flex items-start text-gray-700 dark:text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
                     <span>Architected a Daily Puzzles feature with automated generation algorithms that create unique logic challenges daily through cron scheduling</span>
                   </p>
-                  <p className="flex items-start text-blue-200">
+                  <p className="flex items-start text-gray-700 dark:text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
                     <span>Implemented real-time data synchronization across components using Socket.io for chat systems, game state updates, and leaderboard visualization</span>
                   </p>
                 </div>
               </div>
 
-              <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8">
+              <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-2xl font-bold text-white">Kanbas</h3>
-                  <p className="text-blue-200">Jan. 2024 - May 2024</p>
+                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Kanbas</h3>
+                  <p className="text-gray-600 dark:text-blue-200">Jan. 2024 - May 2024</p>
                 </div>
                 <div className="flex flex-wrap mb-4">
                   {["JavaScript", "React", "Node.js", "MongoDB"].map((tech, i) => {
@@ -257,15 +257,15 @@ export default function Home() {
                   })}
                 </div>
                 <div className="space-y-2">
-                  <p className="flex items-start text-blue-200">
+                  <p className="flex items-start text-gray-700 dark:text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
                     <span>Developed a full-stack learning management system inspired by Canvas, featuring course creation, assignment management, and grading</span>
                   </p>
-                  <p className="flex items-start text-blue-200">
+                  <p className="flex items-start text-gray-700 dark:text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
                     <span>Architected a Single Page Application (SPA) using React and Redux for state management, enabling seamless user experience</span>
                   </p>
-                  <p className="flex items-start text-blue-200">
+                  <p className="flex items-start text-gray-700 dark:text-blue-200">
                     <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
                     <span>Built a scalable backend using Node.js and MongoDB, implementing RESTful API endpoints for efficient data operations</span>
                   </p>
@@ -285,12 +285,12 @@ export default function Home() {
         </section>
 
        {/* Skills Section */}
-       <section id="skills" className="py-20 relative">
+       <section id="skills">
           <div className="container mx-auto px-4">
             <h2 className="section-title">Skills</h2>
             <div className="space-y-12">
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-200">Languages</h3>
+                <h3 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Languages</h3>
                 <div className="flex flex-wrap gap-4">
                   {["Swift", "Objective-C", "C", "C++", "C#", "Python", "JavaScript", "TypeScript", "Assembly"].map((tech, i) => {
                     const Icon = getTechIcon(tech);
@@ -299,7 +299,7 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-200">Frameworks</h3>
+                <h3 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Frameworks</h3>
                 <div className="flex flex-wrap gap-4">
                   {["SwiftUI", "UIKit", "CoreData", "React", "Redux", "Jest", "Node.js", "Express", "pytest"].map((tech, i) => {
                     const Icon = getTechIcon(tech);
@@ -308,7 +308,7 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-200">Technologies & Tools</h3>
+                <h3 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Technologies & Tools</h3>
                 <div className="flex flex-wrap gap-4">
                   {["Xcode", "Git", "CocoaPods", "REST APIs", "MongoDB", "Firebase", "Linux", "Postman"].map((tech, i) => {
                     const Icon = getTechIcon(tech);
@@ -321,7 +321,7 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20 relative">
+        <section id="contact">
           <div className="container mx-auto px-4">
             <h2 className="section-title">Get In Touch</h2>
             <motion.div
@@ -331,7 +331,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="max-w-4xl mx-auto text-center"
             >
-              <p className="text-xl text-blue-200 mb-12">
+              <p className="text-xl text-gray-600 dark:text-blue-200 mb-12">
                 I&apos;m currently looking for new opportunities. Feel free to reach out!
               </p>
               <div className="grid grid-cols-10 items-center relative z-50">
@@ -340,7 +340,7 @@ export default function Home() {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   style={{ fontSize: '4rem' }}
-                  className="col-start-3 col-span-2 flex justify-center p-6 text-white hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
+                  className="col-start-3 col-span-2 flex justify-center p-6 text-gray-700 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
                 >
                   <FaGithub />
                 </a>
@@ -349,14 +349,14 @@ export default function Home() {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   style={{ fontSize: '4rem' }}
-                  className="col-start-5 col-span-2 flex justify-center p-6 text-white hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
+                  className="col-start-5 col-span-2 flex justify-center p-6 text-gray-700 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
                 >
                   <FaLinkedin />
                 </a>
                 <a 
                   href="mailto:aberasturi.j@northeastern.edu"
                   style={{ fontSize: '4rem' }}
-                  className="col-start-7 col-span-2 flex justify-center p-6 text-white hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
+                  className="col-start-7 col-span-2 flex justify-center p-6 text-gray-700 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
                 >
                   <FaEnvelope />
                 </a>
@@ -364,8 +364,6 @@ export default function Home() {
             </motion.div>
           </div>
         </section>
-
-        <div className="w-full h-24 bg-gradient-to-b from-transparent to-indigo-900/50 mt-12"></div>
       </div>
     </Layout>
   );
