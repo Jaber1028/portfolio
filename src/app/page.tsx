@@ -302,23 +302,20 @@ export default function Home() {
             <p className="text-xl text-gray-600 dark:text-blue-200 mb-6">
               I&apos;m currently looking for new opportunities. Feel free to reach out!
             </p>
-            <div className="grid grid-cols-10 items-center relative z-50">
+            <div className="flex justify-center items-center gap-8">
               <SocialLink
                 href="https://github.com/Jaber1028"
                 icon={FaGithub}
-                colStart={3}
                 ariaLabel="GitHub Profile"
               />
               <SocialLink
                 href="https://linkedin.com/in/jabercodes"
                 icon={FaLinkedin}
-                colStart={5}
                 ariaLabel="LinkedIn Profile"
               />
               <SocialLink
                 href="mailto:aberasturi.j@northeastern.edu"
                 icon={FaEnvelope}
-                colStart={7}
                 ariaLabel="Email Contact"
               />
             </div>
