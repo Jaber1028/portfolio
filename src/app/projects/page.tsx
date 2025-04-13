@@ -1,21 +1,23 @@
 'use client';
 
 import Link from 'next/link';
-import { FaGithub } from 'react-icons/fa';
-import dynamic from 'next/dynamic';
-import { getTechIcon } from '@/app/utils/techIcons';
+import ProjectCard from '@/components/ProjectCard';
 
-const TechBadge = dynamic(() => import('@/components/TechBadge'), {
-  ssr: true,
-  loading: () => <div className="inline-flex items-center bg-gray-100/50 dark:bg-gray-800/30 border border-gray-200 dark:border-gray-700 rounded-full px-4 py-1.5 text-sm animate-pulse">&nbsp;</div>
-});
-
-interface Project {
+export interface Project {
+  /** Project title */
   title: string;
+  /** List of technologies used */
   tech: string[];
+  /** Project description */
   description: string;
+  /** List of project achievements/features */
   achievements: string[];
+  /** Project timeline */
   period: string;
+  /** Optional GitHub repository name */
+  githubRepo?: string;
+  /** Optional custom GitHub URL */
+  githubUrl?: string;
 }
 
 export default function Projects() {
@@ -145,60 +147,33 @@ export default function Projects() {
   ];
 
   return (
-      <div className="max-w-[1061px] mx-auto">
-        <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-t-xl p-8">
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-white text-center mb-4">All Projects</h1>
-          <p className="text-center text-gray-600 dark:text-blue-200">
-            Explore my portfolio of web applications, mobile apps, and other digital creations that showcase my skills and expertise.
-          </p>
-        </div>
+    <div className="max-w-[1061px] mx-auto">
+      <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-t-xl p-8">
+        <h1 className="text-3xl font-bold text-gray-800 dark:text-white text-center mb-4">All Projects</h1>
+        <p className="text-center text-gray-600 dark:text-blue-200">
+          Explore my portfolio of web applications, mobile apps, and other digital creations that showcase my skills and expertise.
+        </p>
+      </div>
 
-        <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-b-xl">
-          <div className="space-y-6 p-8">
-            {projects.map((project, index) => (
-              <div key={index} className="bg-white/20 dark:bg-gray-900/20 backdrop-blur-md rounded-xl p-8">
-                <div className="flex justify-between items-start mb-1">
-                  <h2 className="text-xl font-bold text-gray-800 dark:text-white">{project.title}</h2>
-                  <a
-                    href={`https://github.com/Jaber1028/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-700 hover:text-blue-600 dark:text-blue-200 dark:hover:text-white transition-colors"
-                  >
-                    <FaGithub className="text-xl" />
-                  </a>
-                </div>
-                <div className="flex flex-wrap items-center gap-2 mb-4">
-                  {project.tech.map((tech, i) => {
-                    const Icon = getTechIcon(tech);
-                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
-                  })}
-                </div>
-                <div className="mb-8">
-                  <p className="text-xl font-extrabold text-gray-800 dark:text-blue-100 leading-relaxed underline decoration-blue-700/30 underline-offset-8">{project.description}</p>
-                </div>
-                <div className="space-y-3">
-                  {project.achievements.map((achievement, i) => (
-                    <p key={i} className="flex items-start text-gray-700 dark:text-blue-200">
-                      <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                      <span>{achievement}</span>
-                    </p>
-                  ))}
-                </div>
-                <p className="text-gray-600 dark:text-blue-300 text-sm mt-4 text-right">{project.period}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="text-center mt-12 mb-12">
-          <Link
-            href="/"
-            className="button-primary"
-          >
-            Back to Home
-          </Link>
+      <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-b-xl">
+        <div className="space-y-6 p-8">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={index}
+              {...project}
+            />
+          ))}
         </div>
       </div>
+
+      <div className="text-center mt-12 mb-12">
+        <Link
+          href="/"
+          className="button-primary"
+        >
+          Back to Home
+        </Link>
+      </div>
+    </div>
   );
 } 
