@@ -8,13 +8,13 @@ import Layout from '@/client/components/Layout';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import TechBadge from '@/client/components/TechBadge';
-import { getTechIcon } from '@/client/utils/techIcons';
 import Section from '@/client/components/Section';
 import CourseCard from '@/client/components/CourseCard';
 import SkillSection from '@/client/components/SkillSection';
 import SocialLink from '@/client/components/SocialLink';
 import ContactForm from '@/client/components/ContactForm';
+import ProjectCard from '@/client/components/ProjectCard';
+import { projects } from '@/data/projects';
 
 // Lazy load interactive components
 const ThemeToggle = dynamic(() => import('@/client/components/ThemeToggle'));
@@ -29,6 +29,11 @@ export default function HomePage() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Get featured projects (first 3 web projects)
+  const featuredProjects = projects
+    .filter(project => project.category === 'Web')
+    .slice(0, 3);
 
   if (!mounted) {
     return null;
@@ -214,65 +219,19 @@ export default function HomePage() {
         </Section>
 
         {/* Projects Section */}
-        <Section id="projects" title="My Projects" className="py-20">
+        <Section id="projects" title="Featured Projects" className="py-20">
           <p className="text-center text-gray-600 dark:text-blue-200 max-w-2xl mx-auto mb-12">
-            Explore my portfolio of web applications, mobile apps, and other digital creations that showcase my skills and expertise.
+            Here are some of my recent web development projects. Visit my projects page to see more.
           </p>
 
-          <div className="max-w-4xl mx-auto space-y-12">
-            <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Fake Stack Overflow</h3>
-                <p className="text-gray-600 dark:text-blue-200">Jan. 2025 - Apr. 2025</p>
-              </div>
-              <div className="flex flex-wrap mb-4">
-                {["TypeScript", "React", "REST APIs", "Express", "MongoDB", "Socket.io"].map((tech, i) => {
-                  const Icon = getTechIcon(tech);
-                  return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
-                })}
-              </div>
-              <div className="space-y-2">
-                <p className="flex items-start text-gray-700 dark:text-blue-200">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                  <span>Built a comprehensive Q&A platform with authentication, direct messaging, and interactive games using TypeScript and the MERN stack</span>
-                </p>
-                <p className="flex items-start text-gray-700 dark:text-blue-200">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                  <span>Architected a Daily Puzzles feature with automated generation algorithms that create unique logic challenges daily through cron scheduling</span>
-                </p>
-                <p className="flex items-start text-gray-700 dark:text-blue-200">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                  <span>Implemented real-time data synchronization across components using Socket.io for chat systems, game state updates, and leaderboard visualization</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">Kanbas</h3>
-                <p className="text-gray-600 dark:text-blue-200">Jan. 2024 - May 2024</p>
-              </div>
-              <div className="flex flex-wrap mb-4">
-                {["JavaScript", "React", "HTML", "CSS", "Redux", "Node.js", "MongoDB"].map((tech, i) => {
-                  const Icon = getTechIcon(tech);
-                  return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
-                })}
-              </div>
-              <div className="space-y-2">
-                <p className="flex items-start text-gray-700 dark:text-blue-200">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                  <span>Developed a full-stack learning management system inspired by Canvas, featuring course creation, assignment management, and grading</span>
-                </p>
-                <p className="flex items-start text-gray-700 dark:text-blue-200">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                  <span>Architected a Single Page Application (SPA) using React and Redux for state management, enabling seamless user experience</span>
-                </p>
-                <p className="flex items-start text-gray-700 dark:text-blue-200">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
-                  <span>Built a scalable backend using Node.js and MongoDB, implementing RESTful API endpoints for efficient data operations</span>
-                </p>
-              </div>
-            </div>
+          <div className="max-w-4xl mx-auto space-y-6">
+            {featuredProjects.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                {...project}
+                index={index}
+              />
+            ))}
           </div>
 
           <div className="text-center mt-12">
@@ -287,18 +246,18 @@ export default function HomePage() {
 
         {/* Skills Section */}
         <Section id="skills" title="Skills">
-          <div className="space-y-12">
+          <div className="max-w-4xl mx-auto space-y-12">
             <SkillSection
               title="Languages"
               technologies={["Swift", "Objective-C", "C", "C++", "C#", "Python", "JavaScript", "TypeScript", "Assembly", "Java", "HTML", "CSS"]}
             />
             <SkillSection
               title="Frameworks"
-              technologies={["SwiftUI", "UIKit", "CoreData", "React", "Redux", "Jest", "Node.js", "Express", "pytest", "Next.js", "Tailwind"]}
+              technologies={["SwiftUI", "UIKit", "CoreData", "React", "Redux", "Jest", "Node.js", "Express", "pytest", "Next.js", "Tailwind CSS", "Server Components", "Edge Runtime", "Framer Motion"]}
             />
             <SkillSection
               title="Technologies & Tools"
-              technologies={["Xcode", "Git", "CocoaPods", "REST APIs", "MongoDB", "Firebase", "Linux", "Postman", "Framer Motion", "CI/CD", "JUnit"]}
+              technologies={["Xcode", "Git", "CocoaPods", "REST APIs", "MongoDB", "Firebase", "Linux", "Postman", "ESLint", "Vercel", "Cron", "JUnit"]}
             />
           </div>
         </Section>

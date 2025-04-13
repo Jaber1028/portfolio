@@ -35,8 +35,12 @@ import {
   SiNextdotjs,
   SiFramer,
   SiGithubactions,
+  SiEslint,
+  SiVercel,
+  SiCloudflare
 } from 'react-icons/si';
 import { DiNetbeans, DiDatabase } from 'react-icons/di';
+import { TbBrandNextjs, TbClockPlay } from 'react-icons/tb';
 
 const iconMap: Record<string, IconType> = {
   'TypeScript': SiTypescript,
@@ -49,7 +53,7 @@ const iconMap: Record<string, IconType> = {
   'C#': SiSharp,
   'Unity': SiUnity,
   'Vue.js': SiVuedotjs,
-  'Tailwind': SiTailwindcss,
+  'Tailwind CSS': SiTailwindcss,
   'HTML': SiHtml5,
   'CSS': SiCss3,
   'Swift': SiSwift,
@@ -94,7 +98,12 @@ const iconMap: Record<string, IconType> = {
   'STL': DiDatabase,
   'Next.js': SiNextdotjs,
   'Framer Motion': SiFramer,
-  'CI/CD': SiGithubactions
+  'CI/CD': SiGithubactions,
+  'Server Components': TbBrandNextjs,
+  'Edge Runtime': SiCloudflare,
+  'ESLint': SiEslint,
+  'Vercel': SiVercel,
+  'Cron': TbClockPlay
 };
 
 export const getTechIcon = (tech: string): IconType | null => {

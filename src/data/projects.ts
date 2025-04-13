@@ -4,13 +4,24 @@ export const projects: Project[] = [
   {
     title: "Portfolio",
     category: "Web",
-    tech: ["Next.js", "Tailwind", "React", "TypeScript", "Framer Motion", "CI/CD"],
-    description: "A modern, responsive portfolio website with dark mode support and interactive animations",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Server Components",
+      "Edge Runtime",
+      "ESLint",
+      "Vercel"
+    ],
+    description: "A modern, responsive portfolio website with dynamic OG images, dark mode, and interactive animations",
     achievements: [
-      "Developed a responsive portfolio website using Next.js 13 with App Router and TypeScript for type safety",
-      "Implemented dynamic dark mode theming with smooth transitions and persistent user preferences",
-      "Created reusable components with Tailwind CSS for consistent styling and Framer Motion for engaging animations",
-      "Designed a modular education section showcasing coursework with interactive tech badges and clean layout"
+      "Developed a responsive portfolio website using Next.js 14 with App Router, Server Components, and TypeScript for type safety",
+      "Implemented dynamic Open Graph image generation on the Edge Runtime for optimized social media previews",
+      "Created smooth page transitions and hover animations using Framer Motion for enhanced user experience",
+      "Built a modular project showcase with dynamic filtering, search, and category-based organization",
+      "Implemented automatic dark mode detection with smooth theme transitions and persistent preferences",
     ],
     period: "Apr. 2025 - Present",
     githubRepo: "portfolio"
@@ -18,7 +29,7 @@ export const projects: Project[] = [
   {
     title: "Fake Stack Overflow",
     category: "Web",
-    tech: ["TypeScript", "React", "REST APIs", "Express", "MongoDB", "Socket.io"],
+    tech: ["TypeScript", "React", "REST APIs", "Express", "MongoDB", "Socket.io", "CI/CD, Cron"],
     description: "A comprehensive Q&A platform with real-time features and interactive elements",
     achievements: [
       "Built a comprehensive Q&A platform with authentication, direct messaging, and interactive games using TypeScript and the MERN stack",
