@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import ThemeToggle from "@/components/ThemeToggle";
+import BackToTop from "@/components/BackToTop";
 import { metadata as siteMetadata } from "./metadata";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {children}
         <ThemeToggle />
+        <BackToTop />
         <Analytics />
       </body>
     </html>

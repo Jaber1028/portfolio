@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 import ProjectCard from '@/components/ProjectCard';
+import ProjectSearch from '@/components/ProjectSearch';
 
 export interface Project {
   /** Project title */
@@ -21,6 +23,8 @@ export interface Project {
 }
 
 export default function Projects() {
+  const [searchTerm, setSearchTerm] = useState('');
+  
   const projects: Project[] = [
     {
       title: "Portfolio",
@@ -146,6 +150,15 @@ export default function Projects() {
     }
   ];
 
+  const filteredProjects = projects.filter(project => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      project.title.toLowerCase().includes(searchLower) ||
+      project.tech.some(tech => tech.toLowerCase().includes(searchLower)) ||
+      project.description.toLowerCase().includes(searchLower)
+    );
+  });
+
   return (
     <div className="max-w-[1061px] mx-auto">
       <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-t-xl p-8">
@@ -155,14 +168,23 @@ export default function Projects() {
         </p>
       </div>
 
-      <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-b-xl">
-        <div className="space-y-6 p-8">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              {...project}
-            />
-          ))}
+      <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md">
+        <div className="p-8">
+          <ProjectSearch onSearch={setSearchTerm} />
+          <div className="space-y-6">
+            {filteredProjects.length > 0 ? (
+              filteredProjects.map((project, index) => (
+                <ProjectCard
+                  key={index}
+                  {...project}
+                />
+              ))
+            ) : (
+              <p className="text-center text-gray-600 dark:text-blue-200 py-8">
+                No projects found matching your search criteria.
+              </p>
+            )}
+          </div>
         </div>
       </div>
 

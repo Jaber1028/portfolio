@@ -27,6 +27,8 @@ export default function TechBadge({
 
   return (
     <div 
+      role="listitem"
+      aria-label={`Technology: ${text}`}
       className={`
         inline-flex items-center 
         bg-gray-100 dark:bg-gray-800/50 
@@ -37,8 +39,12 @@ export default function TechBadge({
         ${className}
       `}
     >
-      {Icon && <Icon className={`${size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />}
-      {text}
+      {Icon && (
+        <span className="tech-icon" aria-hidden="true">
+          <Icon className={`${size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />
+        </span>
+      )}
+      <span className="tech-name">{text}</span>
     </div>
   );
 } 
