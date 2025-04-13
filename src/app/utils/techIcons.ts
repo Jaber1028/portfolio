@@ -1,5 +1,5 @@
 import { IconType } from 'react-icons';
-import { FaApple, FaEnvelope, FaGithub, FaJs, FaLinkedin } from 'react-icons/fa';
+import { FaApple, FaEnvelope, FaGithub, FaJs, FaLinkedin, FaJava } from 'react-icons/fa';
 import { 
   SiTypescript, 
   SiExpress, 
@@ -31,7 +31,12 @@ import {
   SiApple,
   SiAssemblyscript,
   SiCocoapods,
+  SiJunit5,
+  SiNextdotjs,
+  SiFramer,
+  SiGithubactions,
 } from 'react-icons/si';
+import { DiNetbeans, DiDatabase } from 'react-icons/di';
 
 const iconMap: Record<string, IconType> = {
   'TypeScript': SiTypescript,
@@ -82,7 +87,14 @@ const iconMap: Record<string, IconType> = {
   'SystemVerilog': SiAssemblyscript,
   'Vivado': SiAssemblyscript,
   'FPGA': SiAssemblyscript,
-  'Sockets': SiSocketdotio
+  'Sockets': SiSocketdotio,
+  'Java': FaJava,
+  'JSwing': DiNetbeans,
+  'JUnit': SiJunit5,
+  'STL': DiDatabase,
+  'Next.js': SiNextdotjs,
+  'Framer Motion': SiFramer,
+  'CI/CD': SiGithubactions
 };
 
 export const getTechIcon = (tech: string): IconType | null => {

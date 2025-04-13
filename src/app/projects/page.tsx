@@ -16,8 +16,20 @@ interface Project {
 export default function Projects() {
   const projects: Project[] = [
     {
+      title: "Portfolio",
+      tech: ["Next.js", "Tailwind", "React", "TypeScript", "Framer Motion", "CI/CD"],
+      description: "A modern, responsive portfolio website with dark mode support and interactive animations",
+      achievements: [
+        "Developed a responsive portfolio website using Next.js 13 with App Router and TypeScript for type safety",
+        "Implemented dynamic dark mode theming with smooth transitions and persistent user preferences",
+        "Created reusable components with Tailwind CSS for consistent styling and Framer Motion for engaging animations",
+        "Designed a modular education section showcasing coursework with interactive tech badges and clean layout"
+      ],
+      period: "Apr. 2025 - Present"
+    },
+    {
       title: "Fake Stack Overflow",
-      tech: ["TypeScript", "React", "Express", "MongoDB", "Socket.io"],
+      tech: ["TypeScript", "React", "REST APIs", "Express", "MongoDB", "Socket.io", "CI/CD"],
       description: "A comprehensive Q&A platform with authentication, direct messaging, and interactive games using TypeScript and the MERN stack",
       achievements: [
         "Built a comprehensive Q&A platform with authentication, direct messaging, and interactive games using TypeScript and the MERN stack",
@@ -39,7 +51,7 @@ export default function Projects() {
     },
     {
       title: "Kanbas",
-      tech: ["JavaScript", "React", "Node.js", "MongoDB", "Redux"],
+      tech: ["JavaScript", "React", "HTML", "CSS", "Node.js", "MongoDB", "Redux"],
       description: "A full-stack learning management system inspired by Canvas, featuring course creation, assignment management, and grading",
       achievements: [
         "Developed a full-stack learning management system inspired by Canvas, featuring course creation, assignment management, and grading",

@@ -93,33 +93,72 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="max-w-6xl mx-auto bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8"
+              className="max-w-4xl mx-auto"
             >
-              <div className="grid grid-cols-10 gap-4">
-                <div className="col-start-1 col-span-4">
-                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-8">Northeastern University</h3>
-                  <div className="space-y-6">
-                    <p className="text-gray-700 dark:text-blue-200 text-xl">Bachelor of Science in Computer Science</p>
-                    <p className="text-gray-700 dark:text-blue-200 text-xl">Khoury College of Computer Sciences</p>
-                    <p className="text-gray-700 dark:text-blue-200 text-xl">Sept. 2021 - May 2025</p>
-                    <p className="text-gray-700 dark:text-blue-200 text-xl">GPA: 3.5/4.0</p>
-                    <p className="text-gray-700 dark:text-blue-200 text-xl">Boston, MA</p>
+              <div className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8 hover:shadow-2xl transition-all duration-300">
+                <div className="flex justify-between items-start mb-6">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Northeastern University</h3>
+                    <p className="text-gray-700 dark:text-blue-400 text-lg">Bachelor of Science in Computer Science</p>
+                    <p className="text-gray-600 dark:text-blue-200">Khoury College of Computer Sciences</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-gray-600 dark:text-blue-200 text-sm mb-1">Sept. 2021 - May 2025</p>
+                    <p className="text-gray-600 dark:text-blue-200 text-sm">Boston, MA</p>
+                    <p className="text-gray-600 dark:text-blue-200 text-sm mt-2">GPA: 3.5/4.0</p>
                   </div>
                 </div>
 
-                <div className="col-start-6 col-span-5">
-                  <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-8">Relevant Coursework</h3>
-                  <div className="space-y-4">
+                <div className="mt-8">
+                  <h4 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Relevant Coursework</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {[
-                      "Web Development",
-                      "Mobile Development",
-                      "Object-Oriented Design",
-                      "Software Engineering",
-                      "Algorithms",
-                      "Networks and Distributed Systems",
-                      "Computer Systems"
-                    ].map((course, index) => (
-                      <p key={index} className="text-gray-700 dark:text-blue-200 text-lg">{course}</p>
+                      {
+                        course: "Object-Oriented Design",
+                        tech: ["Java", "JSwing", "JUnit"]
+                      },
+                      
+                      {
+                        course: "Mobile Development",
+                        tech: ["Swift", "UIKit"]
+                      },
+                      {
+                        course: "Web Development",
+                        tech: ["JavaScript", "React", "HTML", "CSS", "Node.js", "MongoDB"]
+                      },
+                      {
+                        course: "Software Engineering",
+                        tech: ["TypeScript", "React", "Node.js", "Express", "MongoDB", "Jest"]
+                      },
+                      {
+                        course: "Algorithms",
+                        tech: ["Python"]
+                      },
+                      {
+                        course: "Networks and Distributed Systems",
+                        tech: ["Python", "Sockets"]
+                      },
+                      {
+                        course: "Computer Systems",
+                        tech: ["C", "Assembly"]
+                      },
+                      {
+                        course: "C++ Programming",
+                        tech: ["C++", "STL"]
+                      }
+                    ].map((item, index) => (
+                      <div key={index} className="flex flex-col">
+                        <p className="flex items-start text-gray-700 dark:text-blue-200 mb-2">
+                          <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
+                          <span>{item.course}</span>
+                        </p>
+                        <div className="flex flex-wrap gap-2 ml-4">
+                          {item.tech.map((tech, i) => {
+                            const Icon = getTechIcon(tech);
+                            return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
+                          })}
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -224,7 +263,7 @@ export default function Home() {
                   <p className="text-gray-600 dark:text-blue-200">Jan. 2025 - Apr. 2025</p>
                 </div>
                 <div className="flex flex-wrap mb-4">
-                  {["TypeScript", "React", "Express", "MongoDB", "Socket.io"].map((tech, i) => {
+                  {["TypeScript", "React", "REST APIs", "Express", "MongoDB", "Socket.io"].map((tech, i) => {
                     const Icon = getTechIcon(tech);
                     return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
                   })}
@@ -251,7 +290,7 @@ export default function Home() {
                   <p className="text-gray-600 dark:text-blue-200">Jan. 2024 - May 2024</p>
                 </div>
                 <div className="flex flex-wrap mb-4">
-                  {["JavaScript", "React", "Node.js", "MongoDB"].map((tech, i) => {
+                  {["JavaScript", "React", "HTML", "CSS", "Redux", "Node.js", "MongoDB"].map((tech, i) => {
                     const Icon = getTechIcon(tech);
                     return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
                   })}
@@ -292,7 +331,7 @@ export default function Home() {
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Languages</h3>
                 <div className="flex flex-wrap gap-4">
-                  {["Swift", "Objective-C", "C", "C++", "C#", "Python", "JavaScript", "TypeScript", "Assembly"].map((tech, i) => {
+                  {["Swift", "Objective-C", "C", "C++", "C#", "Python", "JavaScript", "TypeScript", "Assembly", "Java", "HTML", "CSS"].map((tech, i) => {
                     const Icon = getTechIcon(tech);
                     return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
                   })}
@@ -301,7 +340,7 @@ export default function Home() {
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Frameworks</h3>
                 <div className="flex flex-wrap gap-4">
-                  {["SwiftUI", "UIKit", "CoreData", "React", "Redux", "Jest", "Node.js", "Express", "pytest"].map((tech, i) => {
+                  {["SwiftUI", "UIKit", "CoreData", "React", "Redux", "Jest", "Node.js", "Express", "pytest", "Next.js", "Tailwind"].map((tech, i) => {
                     const Icon = getTechIcon(tech);
                     return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
                   })}
@@ -310,7 +349,7 @@ export default function Home() {
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Technologies & Tools</h3>
                 <div className="flex flex-wrap gap-4">
-                  {["Xcode", "Git", "CocoaPods", "REST APIs", "MongoDB", "Firebase", "Linux", "Postman"].map((tech, i) => {
+                  {["Xcode", "Git", "CocoaPods", "REST APIs", "MongoDB", "Firebase", "Linux", "Postman", "Framer Motion", "CI/CD", "JUnit"].map((tech, i) => {
                     const Icon = getTechIcon(tech);
                     return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
                   })}
@@ -322,7 +361,7 @@ export default function Home() {
 
         {/* Contact Section */}
         <section id="contact">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 mt-12">
             <h2 className="section-title">Get In Touch</h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -331,7 +370,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="max-w-4xl mx-auto text-center"
             >
-              <p className="text-xl text-gray-600 dark:text-blue-200 mb-12">
+              <p className="text-xl text-gray-600 dark:text-blue-200 mb-6">
                 I&apos;m currently looking for new opportunities. Feel free to reach out!
               </p>
               <div className="grid grid-cols-10 items-center relative z-50">
