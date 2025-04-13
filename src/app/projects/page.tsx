@@ -2,8 +2,13 @@
 
 import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa';
-import TechBadge from '@/components/TechBadge';
+import dynamic from 'next/dynamic';
 import { getTechIcon } from '@/app/utils/techIcons';
+
+const TechBadge = dynamic(() => import('@/components/TechBadge'), {
+  ssr: true,
+  loading: () => <div className="inline-flex items-center bg-gray-100/50 dark:bg-gray-800/30 border border-gray-200 dark:border-gray-700 rounded-full px-4 py-1.5 text-sm animate-pulse">&nbsp;</div>
+});
 
 interface Project {
   title: string;
