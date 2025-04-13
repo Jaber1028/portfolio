@@ -5,7 +5,7 @@ import { useState } from 'react';
 import ProjectCard from '@/client/components/ProjectCard';
 import ProjectSearch from '@/client/components/ProjectSearch';
 import { ProjectCategory } from '@/types/project';
-import { projects } from '@/client/data/projects';
+import { projects } from '@/data/projects';
 
 export default function Projects() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -58,8 +58,9 @@ export default function Projects() {
             {filteredProjects.length > 0 ? (
               filteredProjects.map((project, index) => (
                 <ProjectCard
-                  key={index}
+                  key={project.title}
                   {...project}
+                  index={index}
                 />
               ))
             ) : (

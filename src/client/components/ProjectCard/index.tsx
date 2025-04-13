@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { FaGithub } from 'react-icons/fa';
 import TechBadge from '../TechBadge';
 import { getTechIcon } from '@/client/utils/techIcons';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 export interface ProjectCardProps {
   /** Project title */
@@ -24,6 +26,8 @@ export interface ProjectCardProps {
   image?: string;
   /** Optional className for custom styling */
   className?: string;
+  /** Index of the card in the list */
+  index?: number;
 }
 
 export default function ProjectCard({
@@ -35,23 +39,43 @@ export default function ProjectCard({
   githubRepo,
   githubUrl,
   image,
-  className = ''
+  className = '',
+  index = 0
 }: ProjectCardProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
   const githubLink = githubUrl || `https://github.com/Jaber1028/${githubRepo || title.toLowerCase().replace(/\s+/g, '-')}`;
 
+  // Determine if this is one of the first visible cards
+  const isInitiallyVisible = index < 3;
+
   return (
-    <div className={`bg-white/20 dark:bg-gray-900/20 backdrop-blur-md rounded-xl p-8 ${className}`}>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInitiallyVisible || isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ 
+        duration: 0.5,
+        delay: isInitiallyVisible ? index * 0.1 : 0 
+      }}
+      whileHover={{ y: -8, transition: { duration: 0.2 } }}
+      className={`bg-white/20 dark:bg-gray-900/20 backdrop-blur-md rounded-xl p-8 ${className} transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10`}
+    >
       {image && (
-        <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
+        <motion.div 
+          className="relative w-full h-48 mb-4 rounded-lg overflow-hidden"
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.2 }}
+        >
           <Image
             src={image}
             alt={`${title} project screenshot`}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-300"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             loading="lazy"
           />
-        </div>
+        </motion.div>
       )}
       <div className="flex justify-between items-start mb-1">
         <h2 className="text-xl font-bold text-gray-800 dark:text-white">{title}</h2>
@@ -84,6 +108,6 @@ export default function ProjectCard({
         ))}
       </div>
       <p className="text-gray-600 dark:text-blue-300 text-sm mt-4 text-right">{period}</p>
-    </div>
+    </motion.div>
   );
 } 

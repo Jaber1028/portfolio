@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
 export default function ThemeToggle() {
@@ -32,33 +32,40 @@ export default function ThemeToggle() {
   }
 
   return (
-    <div 
-      style={{ 
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3 }}
+      style={{
         position: 'fixed',
         bottom: '20px',
         left: '20px',
-        zIndex: 2147483647,
-        boxShadow: 'none'
+        zIndex: 2147483647
       }}
     >
       <motion.button
         onClick={toggleTheme}
-        className="w-9 h-9 flex items-center justify-center bg-black/80 hover:bg-black/90 text-white rounded-full shadow-lg backdrop-blur-3xl"
-        style={{
-          boxShadow: '0 0 0 1px #171717, inset 0 0 0 1px hsla(0,0%,100%,0.14)',
-          backdropFilter: 'blur(48px)',
-          WebkitFontSmoothing: 'antialiased'
-        }}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label="Toggle theme"
+        className="w-12 h-12 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg backdrop-blur-3xl"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: "spring", stiffness: 400, damping: 17 }}
       >
-        {isDark ? (
-          <FaSun className="w-4 h-4" />
-        ) : (
-          <FaMoon className="w-4 h-4" />
-        )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={isDark ? 'dark' : 'light'}
+            initial={{ y: -20, opacity: 0, rotate: -90 }}
+            animate={{ y: 0, opacity: 1, rotate: 0 }}
+            exit={{ y: 20, opacity: 0, rotate: 90 }}
+            transition={{ duration: 0.2 }}
+          >
+            {isDark ? (
+              <FaMoon className="w-5 h-5 text-blue-500" />
+            ) : (
+              <FaSun className="w-5 h-5 text-yellow-500" />
+            )}
+          </motion.div>
+        </AnimatePresence>
       </motion.button>
-    </div>
+    </motion.div>
   );
 } 
