@@ -1,8 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import { FaGithub } from 'react-icons/fa';
-import TechBadge from './TechBadge';
-import { getTechIcon } from '@/app/utils/techIcons';
+import TechBadge from '../TechBadge';
+import { getTechIcon } from '@/client/utils/techIcons';
 
 export interface ProjectCardProps {
   /** Project title */
@@ -19,6 +20,8 @@ export interface ProjectCardProps {
   githubRepo?: string;
   /** Optional custom GitHub URL */
   githubUrl?: string;
+  /** Optional project image */
+  image?: string;
   /** Optional className for custom styling */
   className?: string;
 }
@@ -31,12 +34,25 @@ export default function ProjectCard({
   period,
   githubRepo,
   githubUrl,
+  image,
   className = ''
 }: ProjectCardProps) {
   const githubLink = githubUrl || `https://github.com/Jaber1028/${githubRepo || title.toLowerCase().replace(/\s+/g, '-')}`;
 
   return (
     <div className={`bg-white/20 dark:bg-gray-900/20 backdrop-blur-md rounded-xl p-8 ${className}`}>
+      {image && (
+        <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
+          <Image
+            src={image}
+            alt={`${title} project screenshot`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading="lazy"
+          />
+        </div>
+      )}
       <div className="flex justify-between items-start mb-1">
         <h2 className="text-xl font-bold text-gray-800 dark:text-white">{title}</h2>
         <a

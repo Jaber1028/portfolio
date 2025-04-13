@@ -6,6 +6,11 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/client/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/client/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/client/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/client/utils/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/client/pages/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     fontFamily: {
@@ -41,6 +46,15 @@ const config: Config = {
       ]
     },
     extend: {
+      keyframes: {
+        'fade-in': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
+        }
+      },
+      animation: {
+        'fade-in': 'fade-in 0.8s ease-out forwards'
+      },
       colors: {
         neutral: {
           50: '#FFFFFF',

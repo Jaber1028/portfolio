@@ -1,7 +1,7 @@
 'use client';
 
-import TechBadge from './TechBadge';
-import { getTechIcon } from '@/app/utils/techIcons';
+import TechBadge from '../TechBadge';
+import { getTechIcon } from '@/client/utils/techIcons';
 
 export interface SkillSectionProps {
   /** Section title */

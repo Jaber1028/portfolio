@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { FaArrowUp } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaArrowUp } from 'react-icons/fa';
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,7 +17,10 @@ export default function BackToTop() {
     };
 
     window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -35,7 +38,7 @@ export default function BackToTop() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           onClick={scrollToTop}
-          className="fixed bottom-20 right-8 z-50 p-3 bg-blue-500/80 hover:bg-blue-600 text-white rounded-full shadow-lg backdrop-blur-sm transition-all hover:scale-110"
+          className="fixed bottom-20 right-6 w-10 h-10 bg-blue-500 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-600 transition-colors z-50"
           aria-label="Back to top"
         >
           <FaArrowUp className="w-4 h-4" />

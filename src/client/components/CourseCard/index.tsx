@@ -1,5 +1,7 @@
-import TechBadge from './TechBadge';
-import { getTechIcon } from '@/app/utils/techIcons';
+'use client';
+
+import TechBadge from '../TechBadge';
+import { getTechIcon } from '@/client/utils/techIcons';
 
 interface CourseCardProps {
   course: string;

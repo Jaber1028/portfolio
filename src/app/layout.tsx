@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import "./globals.css";
-import ThemeToggle from "@/components/ThemeToggle";
-import BackToTop from "@/components/BackToTop";
+import "@/client/app/globals.css";
+import ThemeToggle from "@/client/components/ThemeToggle";
+import BackToTop from "@/client/components/BackToTop";
 import { metadata as siteMetadata } from "./metadata";
 
 const inter = Inter({ subsets: ["latin"] });

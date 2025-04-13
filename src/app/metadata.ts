@@ -1,10 +1,26 @@
 import type { Metadata } from 'next';
 
-const siteConfig = {
+export const siteConfig = {
   name: 'Jacob Aberasturi',
   description: 'Software Engineer specializing in full-stack development, with expertise in React, TypeScript, and modern web technologies.',
   url: 'https://jacobaberasturi.com',
   ogImage: '/og-image.jpg',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://jacobaberasturi.com',
+    title: 'Jacob Aberasturi',
+    description: 'Software Engineer specializing in full-stack development, with expertise in React, TypeScript, and modern web technologies.',
+    siteName: 'Jacob Aberasturi',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Jacob Aberasturi Portfolio',
+      },
+    ],
+  },
 };
 
 export const metadata: Metadata = {
@@ -24,22 +40,7 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   metadataBase: new URL(siteConfig.url),
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.name}'s Portfolio`,
-      },
-    ],
-  },
+  openGraph: siteConfig.openGraph,
   twitter: {
     card: 'summary_large_image',
     title: siteConfig.name,
