@@ -1,0 +1,16 @@
+{
+  "name": "Jacob Aberasturi - Software Engineer",
+  "short_name": "Jacob Aberasturi",
+  "description": "Software Engineer specializing in full-stack development, with expertise in React, TypeScript, and modern web technologies.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ]
+} 
