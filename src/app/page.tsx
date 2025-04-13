@@ -10,6 +10,9 @@ import TechBadge from '@/components/TechBadge';
 import { getTechIcon } from '@/app/utils/techIcons';
 import Section from '@/components/Section';
 import CourseCard from '@/components/CourseCard';
+import JobCard from '@/components/JobCard';
+import SkillSection from '@/components/SkillSection';
+import SocialLink from '@/components/SocialLink';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -192,39 +195,7 @@ export default function Home() {
                 ]
               }
             ].map((job, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 min-w-[300px] w-full h-full"
-              >
-                <div className="flex flex-col mb-6">
-                  <div className="mb-4">
-                    <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{job.title}</h3>
-                    <p className="text-gray-700 dark:text-blue-400 text-base">{job.company}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-gray-600 dark:text-blue-200 text-sm whitespace-nowrap mb-1">{job.period}</p>
-                    <p className="text-gray-600 dark:text-blue-200 text-sm">{job.location}</p>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {job.tech.map((tech, i) => {
-                    const Icon = getTechIcon(tech);
-                    return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
-                  })}
-                </div>
-                <div className="space-y-3">
-                  {job.achievements.map((achievement, i) => (
-                    <p key={i} className="flex items-start text-gray-700 dark:text-blue-200 text-sm">
-                      <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 mt-1.5 flex-shrink-0" />
-                      <span>{achievement}</span>
-                    </p>
-                  ))}
-                </div>
-              </motion.div>
+              <JobCard key={index} {...job} index={index} />
             ))}
           </div>
         </Section>
@@ -304,33 +275,18 @@ export default function Home() {
         {/* Skills Section */}
         <Section id="skills" title="Skills">
           <div className="space-y-12">
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Languages</h3>
-              <div className="flex flex-wrap gap-4">
-                {["Swift", "Objective-C", "C", "C++", "C#", "Python", "JavaScript", "TypeScript", "Assembly", "Java", "HTML", "CSS"].map((tech, i) => {
-                  const Icon = getTechIcon(tech);
-                  return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
-                })}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Frameworks</h3>
-              <div className="flex flex-wrap gap-4">
-                {["SwiftUI", "UIKit", "CoreData", "React", "Redux", "Jest", "Node.js", "Express", "pytest", "Next.js", "Tailwind"].map((tech, i) => {
-                  const Icon = getTechIcon(tech);
-                  return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
-                })}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Technologies & Tools</h3>
-              <div className="flex flex-wrap gap-4">
-                {["Xcode", "Git", "CocoaPods", "REST APIs", "MongoDB", "Firebase", "Linux", "Postman", "Framer Motion", "CI/CD", "JUnit"].map((tech, i) => {
-                  const Icon = getTechIcon(tech);
-                  return Icon && <TechBadge key={i} icon={Icon} text={tech} />;
-                })}
-              </div>
-            </div>
+            <SkillSection
+              title="Languages"
+              technologies={["Swift", "Objective-C", "C", "C++", "C#", "Python", "JavaScript", "TypeScript", "Assembly", "Java", "HTML", "CSS"]}
+            />
+            <SkillSection
+              title="Frameworks"
+              technologies={["SwiftUI", "UIKit", "CoreData", "React", "Redux", "Jest", "Node.js", "Express", "pytest", "Next.js", "Tailwind"]}
+            />
+            <SkillSection
+              title="Technologies & Tools"
+              technologies={["Xcode", "Git", "CocoaPods", "REST APIs", "MongoDB", "Firebase", "Linux", "Postman", "Framer Motion", "CI/CD", "JUnit"]}
+            />
           </div>
         </Section>
 
@@ -347,31 +303,24 @@ export default function Home() {
               I&apos;m currently looking for new opportunities. Feel free to reach out!
             </p>
             <div className="grid grid-cols-10 items-center relative z-50">
-              <a 
-                href="https://github.com/Jaber1028" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                style={{ fontSize: '4rem' }}
-                className="col-start-3 col-span-2 flex justify-center p-6 text-gray-700 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
-              >
-                <FaGithub />
-              </a>
-              <a 
-                href="https://linkedin.com/in/jabercodes" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                style={{ fontSize: '4rem' }}
-                className="col-start-5 col-span-2 flex justify-center p-6 text-gray-700 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
-              >
-                <FaLinkedin />
-              </a>
-              <a 
+              <SocialLink
+                href="https://github.com/Jaber1028"
+                icon={FaGithub}
+                colStart={3}
+                ariaLabel="GitHub Profile"
+              />
+              <SocialLink
+                href="https://linkedin.com/in/jabercodes"
+                icon={FaLinkedin}
+                colStart={5}
+                ariaLabel="LinkedIn Profile"
+              />
+              <SocialLink
                 href="mailto:aberasturi.j@northeastern.edu"
-                style={{ fontSize: '4rem' }}
-                className="col-start-7 col-span-2 flex justify-center p-6 text-gray-700 hover:text-blue-600 dark:text-white dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative z-50"
-              >
-                <FaEnvelope />
-              </a>
+                icon={FaEnvelope}
+                colStart={7}
+                ariaLabel="Email Contact"
+              />
             </div>
           </motion.div>
         </Section>
