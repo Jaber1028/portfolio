@@ -1,33 +1,50 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+
+const siteConfig = {
+  name: 'Jacob Aberasturi',
+  description: 'Software Engineer specializing in full-stack development, with expertise in React, TypeScript, and modern web technologies.',
+  url: 'https://jacobaberasturi.com',
+  ogImage: '/og-image.jpg',
+};
 
 export const metadata: Metadata = {
-  title: 'Jacob Aberasturi | Full Stack Developer',
-  description: 'Portfolio website of Jacob Aberasturi, a Computer Science student and Full Stack Developer specializing in web development, mobile applications, and infrastructure testing.',
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
   keywords: [
-    'Jacob Aberasturi',
-    'Full Stack Developer',
-    'Computer Science',
-    'Web Development',
-    'Mobile Development',
     'Software Engineer',
-    'Portfolio',
-    'Northeastern University'
+    'Full Stack Developer',
+    'React',
+    'TypeScript',
+    'Next.js',
+    'Web Development',
   ],
-  authors: [{ name: 'Jacob Aberasturi' }],
-  creator: 'Jacob Aberasturi',
-  publisher: 'Jacob Aberasturi',
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://jabercodes.com',
-    title: 'Jacob Aberasturi | Full Stack Developer',
-    description: 'Portfolio website of Jacob Aberasturi, a Computer Science student and Full Stack Developer.',
-    siteName: 'Jacob Aberasturi Portfolio',
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name}'s Portfolio`,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jacob Aberasturi | Full Stack Developer',
-    description: 'Portfolio website of Jacob Aberasturi, a Computer Science student and Full Stack Developer.',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
     creator: '@jabercodes',
   },
   robots: {
@@ -41,7 +58,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-site-verification',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
   },
 }; 

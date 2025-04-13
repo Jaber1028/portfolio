@@ -13,6 +13,7 @@ import CourseCard from '@/components/CourseCard';
 import JobCard from '@/components/JobCard';
 import SkillSection from '@/components/SkillSection';
 import SocialLink from '@/components/SocialLink';
+import JsonLd from '@/components/JsonLd';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -21,12 +22,36 @@ export default function Home() {
     setMounted(true);
   }, []);
 
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Jacob Aberasturi',
+    jobTitle: 'Software Engineer',
+    url: 'https://jacobaberasturi.com',
+    image: '/profile.jpeg',
+    sameAs: [
+      'https://github.com/Jaber1028',
+      'https://linkedin.com/in/jabercodes',
+    ],
+    description: 'Software Engineer specializing in full-stack development, with expertise in React, TypeScript, and modern web technologies.',
+    knowsAbout: [
+      'Web Development',
+      'React',
+      'TypeScript',
+      'Node.js',
+      'Mobile Development',
+      'Swift',
+      'Python',
+    ],
+  };
+
   if (!mounted) {
     return null;
   }
 
   return (
     <Layout>
+      <JsonLd data={structuredData} />
       <div className="w-full bg-gray-50/50 dark:bg-gray-900/95 font-sans">
         {/* Header */}
         <header className="flex justify-between items-center py-6 px-12">
@@ -71,6 +96,8 @@ export default function Home() {
                   height={250}
                   className="object-cover w-full h-full"
                   alt="Jacob Aberasturi in a blue polo shirt"
+                  priority
+                  quality={90}
                 />
               </div>
             </div>
