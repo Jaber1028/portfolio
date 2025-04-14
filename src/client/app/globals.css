@@ -8,7 +8,7 @@
 @layer components {
   .section-title {
     @apply text-4xl font-bold mb-12 text-center text-gray-900 dark:text-white relative w-full block;
-    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+    background: linear-gradient(135deg, #03307d 0%, #c71212 100%, darkblue, #e22006);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -16,7 +16,7 @@
   
   .section-title::after {
     content: '';
-    @apply absolute bottom-[-1rem] left-1/2 transform -translate-x-1/2 w-24 h-1 bg-blue-500 dark:bg-blue-400 rounded;
+    @apply absolute bottom-[-1rem] left-1/2 transform -translate-x-1/2 w-24 h-2 bg-blue-500 dark:bg-blue-900 rounded;
   }
 
   .tech-badge {
@@ -63,7 +63,7 @@
   .button-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 10px -1px rgba(37, 99, 235, 0.25), 0 4px 6px -1px rgba(37, 99, 235, 0.15);
-    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+    background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
   }
 
   .button-primary:active {
@@ -72,14 +72,23 @@
   }
 
   .dark .button-primary {
-    background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+    background: linear-gradient(135deg, #004daa 0%, #1D4ED8 100%);
     color: white;
     box-shadow: 0 4px 6px -1px rgba(96, 165, 250, 0.3), 0 2px 4px -1px rgba(96, 165, 250, 0.2);
   }
 
   .dark .button-primary:hover {
-    background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+    background: linear-gradient(135deg, #803bf6 0%, #2563EB 80%);
     box-shadow: 0 6px 10px -1px rgba(96, 165, 250, 0.35), 0 4px 6px -1px rgba(96, 165, 250, 0.25);
+  }
+
+  /* Bullet point styles */
+  .bullet-point {
+    @apply w-1.5 h-1.5 rounded-full mr-2 mt-2 flex-shrink-0 bg-blue-400;
+  }
+
+  .dark .bullet-point {
+    @apply bg-blue-600;
   }
 }
 

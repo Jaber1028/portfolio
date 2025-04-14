@@ -57,7 +57,7 @@ export default function JobCard({
       <div className="space-y-3">
         {achievements.map((achievement, i) => (
           <p key={i} className="flex items-start text-gray-700 dark:text-blue-200 text-sm">
-            <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 mt-1.5 flex-shrink-0" />
+            <span className="bullet-point" />
             <span>{achievement}</span>
           </p>
         ))}

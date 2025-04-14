@@ -12,7 +12,7 @@ export default function CourseCard({ course, tech }: CourseCardProps) {
   return (
     <div className="flex flex-col">
       <p className="flex items-start text-gray-700 dark:text-blue-200 mb-2">
-        <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 mt-2 flex-shrink-0" />
+        <span className="bullet-point" />
         <span>{course}</span>
       </p>
       <div className="flex flex-wrap gap-2 ml-4">
