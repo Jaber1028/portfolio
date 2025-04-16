@@ -1,15 +1,24 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { ReactNode } from 'react';
 
 interface PageTransitionProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export default function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return <>{children}</>;
+  }
 
   return (
     <AnimatePresence mode="wait">

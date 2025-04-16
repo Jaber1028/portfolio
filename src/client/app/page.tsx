@@ -15,6 +15,7 @@ import SocialLink from '@/client/components/SocialLink';
 import ContactForm from '@/client/components/ContactForm';
 import ProjectCard from '@/client/components/ProjectCard';
 import { projects } from '@/data/projects';
+import Header from '@/client/components/Header';
 
 // Lazy load interactive components
 const ThemeToggle = dynamic(() => import('@/client/components/ThemeToggle'));
@@ -42,29 +43,7 @@ export default function HomePage() {
   return (
     <Layout>
       <div className="w-full bg-gray-50/50 dark:bg-gray-900/95 font-sans">
-        {/* Header */}
-        <header className="flex justify-between items-center py-6 px-12">
-          <div className="flex items-center space-x-2">
-            <svg viewBox="0 0 24 24" className="w-8 h-8 text-gray-800 dark:text-white" fill="currentColor">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
-            <span className="text-gray-800 dark:text-white text-xl font-bold">Jacob Aberasturi</span>
-          </div>
-          <nav className="hidden md:flex space-x-8">
-            <a href="#about" className="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">
-              About
-            </a>
-            <a href="#projects" className="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">
-              Projects
-            </a>
-            <a href="#experience" className="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">
-              Experience
-            </a>
-            <a href="#contact" className="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-300">
-              Contact
-            </a>
-          </nav>
-        </header>
+        <Header />
 
         {/* About Section */}
         <Section id="about" title="About">

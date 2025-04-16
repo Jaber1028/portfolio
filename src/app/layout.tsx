@@ -5,8 +5,8 @@ import "@/client/app/globals.css";
 import ThemeToggle from "@/client/components/ThemeToggle";
 import BackToTop from "@/client/components/BackToTop";
 import ErrorBoundary from "@/client/components/ErrorBoundary";
-import PageTransition from "@/client/components/PageTransition";
 import { metadata as siteMetadata } from "./metadata";
+import { GameProvider } from '@/client/contexts/GameContext';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,11 +23,11 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
         <ErrorBoundary>
-          <PageTransition>
+          <GameProvider>
             {children}
-          </PageTransition>
+          </GameProvider>
           <ThemeToggle />
           <BackToTop />
           <Analytics />
