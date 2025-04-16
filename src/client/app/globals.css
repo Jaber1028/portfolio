@@ -133,13 +133,13 @@ body {
 .dark body {
   background: linear-gradient(
       to bottom right,
-      rgba(17, 24, 39, 0.9),
-      rgba(17, 24, 39, 0.1)
+      rgba(2, 16, 45, 0.9),
+      rgba(5, 17, 42, 0.8)
     ),
     linear-gradient(
       to bottom left,
-      rgba(17, 24, 39, 0.9),
-      rgba(17, 24, 39, 0.1)
+      rgba(9, 16, 32, 0.9),
+      rgba(7, 23, 58, 0.7)
     );
   background-size: 100% 100%, 20px 20px, 20px 20px;
   color: var(--darkreader-neutral-text);

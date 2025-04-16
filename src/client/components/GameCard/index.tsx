@@ -15,19 +15,19 @@ export default function GameCard({ title, description, path, icon, isNew }: Game
   return (
     <motion.div
       whileHover={{ y: -5 }}
-      className="bg-white/30 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-6 hover:shadow-lg transition-all"
+      className="bg-white/80 dark:bg-[#1e2330] rounded-xl p-6 transition-all duration-300"
     >
       <Link href={path} className="block">
         <div className="flex items-center justify-between mb-4">
-          <div className="w-12 h-12 text-blue-500">{icon}</div>
+          <div className="w-12 h-12">{icon}</div>
           {isNew && (
-            <span className="px-2 py-1 text-xs font-semibold text-white bg-blue-500 rounded-full">
+            <span className="px-2 py-1 text-xs font-semibold text-white bg-blue-500 dark:bg-blue-400 rounded-full">
               New
             </span>
           )}
         </div>
-        <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-300">{description}</p>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-400">{description}</p>
       </Link>
     </motion.div>
   );

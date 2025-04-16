@@ -18,6 +18,7 @@ export default function WordGuessGame() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const mountedRef = useRef(true);
+  const gameIdRef = useRef<string | undefined>(undefined);
 
   // Track mounted state
   useEffect(() => {
@@ -60,11 +61,17 @@ export default function WordGuessGame() {
   useEffect(() => {
     startNewGame();
     return () => {
-      if (gameState?._id) {
-        deleteGame(gameState._id);
+      if (gameIdRef.current) {
+        deleteGame(gameIdRef.current);
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (gameState?._id) {
+      gameIdRef.current = gameState._id;
+    }
+  }, [gameState?._id]);
 
   const deleteGame = async (id: string) => {
     try {
