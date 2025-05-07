@@ -4,6 +4,7 @@ import type SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 // This is a server component - it will never run on the client
 export async function POST(request: Request) {
+  console.log('Contact API called');
   try {
     const data = await request.json();
     const { name, email, subject, message, token } = data;
@@ -39,6 +40,7 @@ export async function POST(request: Request) {
       body: `secret=${secret}&response=${token}`,
     });
     const verifyData = await verifyRes.json();
+    console.log('reCAPTCHA verify response:', verifyData);
     if (!verifyData.success || (verifyData.score !== undefined && verifyData.score < 0.5)) {
       return NextResponse.json(
         { error: 'Captcha verification failed. Please try again.' },
