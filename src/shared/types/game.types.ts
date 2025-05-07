@@ -1,4 +1,4 @@
-export type GameType = 'WordGuess' | 'TruthTable' | 'CodeNumber';
+export type GameType = 'WordGuess' | 'TruthTable' | 'CodeNumber' | 'MemoryGrid';
 
 export interface Game {
   _id?: string;
@@ -40,4 +40,30 @@ export interface GameProgress {
   attempts: number;
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+/**
+ * State for the Memory Grid (Bitburner-style) mini-game
+ */
+export interface MemoryGridGameState {
+  /** Unique game ID (if persisted) */
+  _id?: string;
+  /** 2D array representing the grid of cards (each card is a string or number) */
+  grid: (string | number)[][];
+  /** Array of coordinates for currently flipped cards */
+  flipped: [number, number][];
+  /** Array of coordinates for matched cards */
+  matched: [number, number][];
+  /** Number of moves made by the player */
+  moves: number;
+  /** Maximum allowed moves (optional, for difficulty) */
+  maxMoves?: number;
+  /** Whether the game is over */
+  isGameOver: boolean;
+  /** Whether the player has won */
+  isGameWon: boolean;
+  /** Timestamp for game creation */
+  createdAt: Date;
+  /** Timestamp for last update */
+  updatedAt: Date;
 } 

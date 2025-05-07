@@ -35,6 +35,15 @@ const games: Game[] = [
     path: '/games/code-number',
     features: ['Number sequence', 'Feedback system', 'Limited attempts'],
   },
+  {
+    id: 'memory-grid',
+    title: 'Memory Grid',
+    description: 'Match all pairs before you run out of moves! Inspired by Bitburner infiltration mini-games.',
+    icon: <FaBrain className="w-6 h-6 text-green-500 dark:text-green-400" />,
+    path: '/games/memory-grid',
+    features: ['Memory challenge', 'Grid-based', 'Limited moves'],
+    isNew: true,
+  },
   // More games can be added here
 ];
 
@@ -79,7 +88,7 @@ export default function GamesHub() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-auto mx-auto">
             <AnimatePresence>
               {games.map((game, index) => (
                 <motion.div
@@ -105,7 +114,7 @@ export default function GamesHub() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="relative bg-gray-100 dark:bg-[#1e2330] rounded-2xl p-8 text-center mt-auto"
+            className="relative bg-gray-100 dark:bg-[#1e2330] rounded-2xl p-8 text-center mt-8"
           >
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Coming Soon

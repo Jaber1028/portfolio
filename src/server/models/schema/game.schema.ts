@@ -10,7 +10,7 @@ const gameSchema = new Schema({
   type: { 
     type: String, 
     required: true,
-    enum: ['WordGuess', 'TruthTable', 'CodeNumber']
+    enum: ['WordGuess', 'TruthTable', 'CodeNumber', 'MemoryGrid']
   },
   title: { type: String, required: true },
   description: { type: String, required: true },
