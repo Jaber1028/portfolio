@@ -24,6 +24,8 @@
 # misc
 .DS_Store
 *.pem
+.cursor
+instructions.md
 
 # debug
 npm-debug.log*
