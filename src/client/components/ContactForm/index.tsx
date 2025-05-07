@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { EmailData } from '@/types/email';
+import { useReCaptcha } from 'next-recaptcha-v3';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<EmailData>({
@@ -12,6 +13,7 @@ export default function ContactForm() {
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const { executeRecaptcha } = useReCaptcha();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,12 +21,16 @@ export default function ContactForm() {
     setErrorMessage('');
 
     try {
+      // Generate reCAPTCHA token
+      const token = await executeRecaptcha('contact_form');
+      if (!token) throw new Error('Failed to verify captcha. Please try again.');
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, token }),
       });
 
       if (!response.ok) {

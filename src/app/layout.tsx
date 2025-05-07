@@ -7,6 +7,7 @@ import BackToTop from "@/client/components/BackToTop";
 import ErrorBoundary from "@/client/components/ErrorBoundary";
 import { metadata as siteMetadata } from "./metadata";
 import { GameProvider } from '@/client/contexts/GameContext';
+import { ReCaptchaProvider } from 'next-recaptcha-v3';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +26,11 @@ export default function RootLayout({
       </head>
       <body className={inter.className} suppressHydrationWarning>
         <ErrorBoundary>
-          <GameProvider>
-            {children}
-          </GameProvider>
+          <ReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}>
+            <GameProvider>
+              {children}
+            </GameProvider>
+          </ReCaptchaProvider>
           <ThemeToggle />
           <BackToTop />
           <Analytics />
