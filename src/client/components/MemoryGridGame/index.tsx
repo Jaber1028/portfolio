@@ -19,11 +19,11 @@ const fetchNewGame = async (): Promise<MemoryGridGameState> => {
   return res.json();
 };
 
-const fetchGame = async (gameId: string): Promise<MemoryGridGameState> => {
-  const res = await fetch(`/api/games/memory-grid?gameId=${gameId}`);
-  if (!res.ok) throw new Error('Failed to fetch game');
-  return res.json();
-};
+// const fetchGame = async (gameId: string): Promise<MemoryGridGameState> => {
+//   const res = await fetch(`/api/games/memory-grid?gameId=${gameId}`);
+//   if (!res.ok) throw new Error('Failed to fetch game');
+//   return res.json();
+// };
 
 const flipCard = async (gameId: string, row: number, col: number): Promise<MemoryGridGameState> => {
   const res = await fetch('/api/games/memory-grid', {
@@ -53,7 +53,6 @@ const MemoryGridGame: React.FC = () => {
 
   useEffect(() => {
     startNewGame();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const startNewGame = async () => {

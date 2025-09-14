@@ -3,7 +3,16 @@ import { connectToDatabase } from '@/server/db/mongodb';
 
 export async function GET() {
   try {
-    const { db } = await connectToDatabase();
+    const connection = await connectToDatabase();
+    
+    if (!connection) {
+      return NextResponse.json(
+        { status: 'error', message: 'MongoDB not available' },
+        { status: 503 }
+      );
+    }
+    
+    const { db } = connection;
     
     // Try to list all collections to verify connection
     const collections = await db.listCollections().toArray();

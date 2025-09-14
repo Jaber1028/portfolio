@@ -39,7 +39,11 @@ export class GameService {
   }
 
   async createGame(length: number = 4, maxAttempts: number = 10): Promise<GameState> {
-    const { db } = await connectToDatabase();
+    const connection = await connectToDatabase();
+    if (!connection) {
+      throw new Error('Database not available');
+    }
+    const { db } = connection;
     const gameState: GameState = {
       secretCode: this.generateSecretCode(length),
       attempts: 0,
@@ -63,7 +67,11 @@ export class GameService {
     isGameOver: boolean;
     isGameWon: boolean;
   }> {
-    const { db } = await connectToDatabase();
+    const connection = await connectToDatabase();
+    if (!connection) {
+      throw new Error('Database not available');
+    }
+    const { db } = connection;
     const game = await db.collection(this.gamesCollection).findOne({ _id: new ObjectId(gameId) });
     
     if (!game) {

@@ -4,7 +4,20 @@ import MemoryGridGameModel from '@/server/models/memoryGridGame.model';
 import { connectMongoose } from '@/server/db/mongoose';
 
 // In-memory game storage for when database is unavailable
-const inMemoryGames = new Map<string, any>();
+interface MemoryGridGameState {
+  _id: string;
+  grid: (string | number)[][];
+  flipped: [number, number][];
+  matched: [number, number][];
+  moves: number;
+  maxMoves: number;
+  isGameOver: boolean;
+  isGameWon: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const inMemoryGames = new Map<string, MemoryGridGameState>();
 
 // Helper to generate a shuffled grid (4x4 for easy, can be parameterized)
 function generateShuffledGrid(size = 4): (string | number)[][] {

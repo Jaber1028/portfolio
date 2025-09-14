@@ -15,7 +15,7 @@ interface MongoConnection {
 
 interface GlobalMongo {
   conn: MongoConnection | null;
-  promise: Promise<MongoConnection> | null;
+  promise: Promise<MongoConnection | null> | null;
 }
 
 declare global {
@@ -64,7 +64,7 @@ export async function connectToDatabase(): Promise<MongoConnection | null> {
   try {
     cached.conn = await cached.promise;
     return cached.conn;
-  } catch (error) {
+  } catch {
     cached.promise = null;
     console.warn('Failed to connect to MongoDB, continuing without database');
     return null;
