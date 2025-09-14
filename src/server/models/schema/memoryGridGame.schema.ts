@@ -23,7 +23,7 @@ const memoryGridGameSchema = new Schema({
   },
   maxMoves: {
     type: Number,
-    default: 40
+    default: 20
   },
   isGameOver: {
     type: Boolean,

@@ -169,13 +169,13 @@ const MemoryGridGame: React.FC = () => {
       </div>
       <div className="mt-6 w-full text-center">
         {game.isGameOver && (
-          <div className="p-4 rounded-lg bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 font-semibold">
-            Game Over! <button className="ml-2 underline text-blue-600 dark:text-blue-400" onClick={startNewGame}>Play Again</button>
-          </div>
-        )}
-        {game.isGameWon && (
-          <div className="p-4 rounded-lg bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 font-semibold">
-            Congratulations! You won! <button className="ml-2 underline text-blue-600 dark:text-blue-400" onClick={startNewGame}>Play Again</button>
+          <div className={`p-4 rounded-lg font-semibold ${
+            game.isGameWon 
+              ? 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300'
+              : 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300'
+          }`}>
+            {game.isGameWon ? 'Congratulations! You won!' : 'Game Over!'} 
+            <button className="ml-2 underline text-blue-600 dark:text-blue-400" onClick={startNewGame}>Play Again</button>
           </div>
         )}
       </div>
