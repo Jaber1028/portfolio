@@ -3,6 +3,9 @@ import { connectToDatabase } from '@/server/db/mongodb';
 import { z } from 'zod';
 import { ObjectId, WithId } from 'mongodb';
 
+// In-memory game storage for when database is unavailable
+const inMemoryGames = new Map<string, GameState>();
+
 const words = [
   // Programming Languages
   'REACT', 'NEXT', 'TYPESCRIPT', 'JAVASCRIPT', 'PYTHON', 'SWIFT', 'KOTLIN', 'RUST', 'GOLANG', 'JAVA',
@@ -48,7 +51,7 @@ function formatGameResponse(game: WithId<GameState>) {
 
 export async function POST() {
   try {
-    const { db } = await connectToDatabase();
+    const connection = await connectToDatabase();
     
     const gameState = {
       word: words[Math.floor(Math.random() * words.length)],
@@ -61,7 +64,18 @@ export async function POST() {
       updatedAt: new Date()
     };
 
-    const result = await db.collection('word_guess_games').insertOne(gameState);
+    if (!connection) {
+      // Fallback: Create game state in memory without database
+      const gameId = `temp_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const tempGame = {
+        ...gameState,
+        _id: gameId
+      };
+      inMemoryGames.set(gameId, tempGame);
+      return NextResponse.json(tempGame);
+    }
+
+    const result = await connection.db.collection('word_guess_games').insertOne(gameState);
     
     return NextResponse.json({
       ...gameState,
@@ -81,7 +95,56 @@ export async function PUT(request: Request) {
     const body = await request.json();
     const { gameId, letter } = GuessSchema.parse(body);
 
-    const { db } = await connectToDatabase();
+    const connection = await connectToDatabase();
+    
+    if (!connection) {
+      // Fallback: Handle in-memory games
+      const game = inMemoryGames.get(gameId);
+      
+      if (!game) {
+        return NextResponse.json(
+          { error: 'Game not found' },
+          { status: 404 }
+        );
+      }
+
+      if (game.isGameOver) {
+        return NextResponse.json(game);
+      }
+
+      // Convert letter to uppercase for comparison
+      const upperLetter = letter.toUpperCase();
+      
+      // If letter was already guessed, return current game state without counting as an attempt
+      if (game.guessedLetters.includes(upperLetter)) {
+        return NextResponse.json(game);
+      }
+
+      // Check if the letter exists in the word
+      const isCorrectGuess = game.word.includes(upperLetter);
+
+      const updatedGame: GameState = {
+        ...game,
+        // Only increment attempts for incorrect guesses
+        attempts: isCorrectGuess ? game.attempts : game.attempts + 1,
+        guessedLetters: [...game.guessedLetters, upperLetter],
+        updatedAt: new Date()
+      };
+      
+      const isWordGuessed = game.word.split('').every((char: string) => 
+        updatedGame.guessedLetters.includes(char)
+      );
+      
+      updatedGame.isGameWon = isWordGuessed;
+      updatedGame.isGameOver = isWordGuessed || updatedGame.attempts >= game.maxAttempts;
+
+      // Update the in-memory game
+      inMemoryGames.set(gameId, updatedGame);
+
+      return NextResponse.json(updatedGame);
+    }
+
+    const { db } = connection;
     
     let query;
     try {
@@ -162,9 +225,33 @@ export async function PUT(request: Request) {
 
 export async function GET(request: Request) {
   try {
-    const { db } = await connectToDatabase();
+    const connection = await connectToDatabase();
     const { searchParams } = new URL(request.url);
     const gameId = searchParams.get('gameId');
+    
+    if (!connection) {
+      // Fallback: Handle in-memory games
+      if (gameId) {
+        const game = inMemoryGames.get(gameId);
+        if (!game) {
+          return NextResponse.json(
+            { error: 'Game not found' },
+            { status: 404 }
+          );
+        }
+        return NextResponse.json(game);
+      }
+
+      // Return all active in-memory games
+      const activeGames = Array.from(inMemoryGames.values())
+        .filter(game => !game.isGameOver)
+        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+        .slice(0, 10);
+
+      return NextResponse.json(activeGames);
+    }
+
+    const { db } = connection;
     
     if (gameId) {
       const game = await db.collection<GameState>('word_guess_games').findOne({ 
@@ -206,7 +293,20 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: 'Game ID is required' }, { status: 400 });
     }
 
-    const { db } = await connectToDatabase();
+    const connection = await connectToDatabase();
+    
+    if (!connection) {
+      // Fallback: Handle in-memory games
+      const game = inMemoryGames.get(gameId);
+      if (!game) {
+        return NextResponse.json({ error: 'Game not found' }, { status: 404 });
+      }
+      
+      inMemoryGames.delete(gameId);
+      return NextResponse.json({ message: 'Game deleted successfully' });
+    }
+
+    const { db } = connection;
     
     try {
       const result = await db.collection('word_guess_games').deleteOne({ 

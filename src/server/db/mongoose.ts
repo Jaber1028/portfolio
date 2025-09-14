@@ -21,10 +21,19 @@ const cached: MongooseCache = global.mongoose || { conn: null, promise: null };
 global.mongoose = cached;
 
 export async function connectMongoose() {
+  if (!MONGODB_URI) {
+    console.warn('MongoDB URI not set, skipping mongoose connection');
+    return null;
+  }
+
   if (cached.conn) return cached.conn;
   if (!cached.promise) {
     cached.promise = mongoose.connect(MONGODB_URI, {
       bufferCommands: false,
+    }).catch((error) => {
+      console.error('Mongoose connection error:', error);
+      console.warn('Continuing without mongoose connection');
+      return null;
     });
   }
   cached.conn = await cached.promise;

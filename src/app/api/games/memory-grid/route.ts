@@ -3,6 +3,9 @@ import { z } from 'zod';
 import MemoryGridGameModel from '@/server/models/memoryGridGame.model';
 import { connectMongoose } from '@/server/db/mongoose';
 
+// In-memory game storage for when database is unavailable
+const inMemoryGames = new Map<string, any>();
+
 // Helper to generate a shuffled grid (4x4 for easy, can be parameterized)
 function generateShuffledGrid(size = 4): (string | number)[][] {
   const totalCards = size * size;
@@ -41,7 +44,28 @@ function formatGameResponse(game: any) {
 
 export async function POST() {
   try {
-    await connectMongoose();
+    const mongoose = await connectMongoose();
+    
+    if (!mongoose) {
+      // Fallback: Create game state in memory without database
+      const grid = generateShuffledGrid();
+      const gameId = `temp_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const gameState = {
+        _id: gameId,
+        grid,
+        flipped: [],
+        matched: [],
+        moves: 0,
+        maxMoves: 40,
+        isGameOver: false,
+        isGameWon: false,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      inMemoryGames.set(gameId, gameState);
+      return NextResponse.json(gameState);
+    }
+
     const grid = generateShuffledGrid();
     const gameState = await MemoryGridGameModel.create({
       grid,
@@ -66,9 +90,70 @@ export async function POST() {
 
 export async function PUT(request: Request) {
   try {
-    await connectMongoose();
+    const mongoose = await connectMongoose();
     const body = await request.json();
     const { gameId, row, col } = FlipSchema.parse(body);
+    
+    if (!mongoose) {
+      // Fallback: Handle in-memory games
+      const game = inMemoryGames.get(gameId);
+      
+      if (!game) {
+        return NextResponse.json({ error: 'Game not found' }, { status: 404 });
+      }
+      
+      if (game.isGameOver) {
+        return NextResponse.json(game);
+      }
+      
+      // If already matched or already flipped, ignore
+      if (
+        (game.matched as [number, number][]).some(([r, c]) => r === row && c === col) ||
+        (game.flipped as [number, number][]).some(([r, c]) => r === row && c === col)
+      ) {
+        return NextResponse.json(game);
+      }
+      
+      const flipped: [number, number][] = [...(game.flipped as [number, number][]), [row, col]];
+      let matched: [number, number][] = [...(game.matched as [number, number][])];
+      let moves = game.moves;
+      let isGameWon = false;
+      let isGameOver = false;
+      
+      // If two cards are flipped, check for match
+      if (flipped.length === 2) {
+        moves += 1;
+        const [[r1, c1], [r2, c2]] = flipped;
+        if (game.grid[r1][c1] === game.grid[r2][c2]) {
+          matched = [...matched, [r1, c1], [r2, c2]];
+          game.flipped = []; // Clear immediately for matches
+        } else {
+          // For non-matches, keep both cards flipped for a moment
+          game.flipped = flipped;
+        }
+      } else {
+        game.flipped = flipped;
+      }
+      
+      if (matched.length === game.grid.length * game.grid.length) {
+        isGameWon = true;
+        isGameOver = true;
+      } else if (game.maxMoves && moves >= game.maxMoves) {
+        isGameOver = true;
+      }
+      
+      game.matched = matched;
+      game.moves = moves;
+      game.isGameWon = isGameWon;
+      game.isGameOver = isGameOver;
+      game.updatedAt = new Date();
+      
+      // Update the in-memory game
+      inMemoryGames.set(gameId, game);
+      
+      return NextResponse.json(game);
+    }
+
     const game = await MemoryGridGameModel.findById(gameId);
     if (!game) {
       return NextResponse.json({ error: 'Game not found' }, { status: 404 });
@@ -94,8 +179,11 @@ export async function PUT(request: Request) {
       const [[r1, c1], [r2, c2]] = flipped;
       if (game.grid[r1][c1] === game.grid[r2][c2]) {
         matched = [...matched, [r1, c1], [r2, c2]];
+        game.flipped = []; // Clear immediately for matches
+      } else {
+        // For non-matches, keep both cards flipped for a moment
+        game.flipped = flipped;
       }
-      game.flipped = [];
     } else {
       game.flipped = flipped;
     }
@@ -127,11 +215,75 @@ export async function PUT(request: Request) {
   }
 }
 
+export async function PATCH(request: Request) {
+  try {
+    const mongoose = await connectMongoose();
+    const body = await request.json();
+    const { gameId } = body;
+    
+    if (!mongoose) {
+      // Fallback: Handle in-memory games
+      const game = inMemoryGames.get(gameId);
+      
+      if (!game) {
+        return NextResponse.json({ error: 'Game not found' }, { status: 404 });
+      }
+      
+      // Clear flipped cards
+      game.flipped = [];
+      game.updatedAt = new Date();
+      
+      // Update the in-memory game
+      inMemoryGames.set(gameId, game);
+      
+      return NextResponse.json(game);
+    }
+
+    const game = await MemoryGridGameModel.findById(gameId);
+    if (!game) {
+      return NextResponse.json({ error: 'Game not found' }, { status: 404 });
+    }
+    
+    // Clear flipped cards
+    game.flipped = [];
+    game.updatedAt = new Date();
+    await game.save();
+    
+    return NextResponse.json(formatGameResponse(game));
+  } catch (error) {
+    console.error('Error clearing flipped cards:', error);
+    return NextResponse.json(
+      { error: 'Failed to clear flipped cards' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function GET(request: Request) {
   try {
-    await connectMongoose();
+    const mongoose = await connectMongoose();
     const { searchParams } = new URL(request.url);
     const gameId = searchParams.get('gameId');
+    
+    if (!mongoose) {
+      // Fallback: Handle in-memory games
+      if (gameId) {
+        const game = inMemoryGames.get(gameId);
+        if (!game) {
+          return NextResponse.json({ error: 'Game not found' }, { status: 404 });
+        }
+        return NextResponse.json(game);
+      }
+
+      // Return all active in-memory games
+      const activeGames = Array.from(inMemoryGames.values())
+        .filter(game => !game.isGameOver)
+        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+        .slice(0, 10);
+
+      return NextResponse.json(activeGames);
+    }
+
     if (gameId) {
       const game = await MemoryGridGameModel.findById(gameId);
       if (!game) {

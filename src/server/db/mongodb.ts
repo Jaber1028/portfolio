@@ -32,7 +32,13 @@ if (!mongo) {
 
 const cached = (globalThis as unknown as { mongo: GlobalMongo }).mongo;
 
-export async function connectToDatabase(): Promise<MongoConnection> {
+export async function connectToDatabase(): Promise<MongoConnection | null> {
+  // Check if MongoDB URI is available
+  if (!process.env.MONGODB_URI || !process.env.MONGODB_DB) {
+    console.warn('MongoDB environment variables not set, running without database');
+    return null;
+  }
+
   if (cached.conn) {
     return cached.conn;
   }
@@ -50,7 +56,8 @@ export async function connectToDatabase(): Promise<MongoConnection> {
       };
     }).catch((error) => {
       console.error('MongoDB connection error:', error);
-      throw error;
+      console.warn('Continuing without database connection');
+      return null;
     });
   }
 
@@ -59,6 +66,7 @@ export async function connectToDatabase(): Promise<MongoConnection> {
     return cached.conn;
   } catch (error) {
     cached.promise = null;
-    throw error;
+    console.warn('Failed to connect to MongoDB, continuing without database');
+    return null;
   }
 } 

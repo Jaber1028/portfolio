@@ -21,9 +21,12 @@ export default function ContactForm() {
     setErrorMessage('');
 
     try {
-      // Generate reCAPTCHA token
-      const token = await executeRecaptcha('contact_form');
-      if (!token) throw new Error('Failed to verify captcha. Please try again.');
+      // Generate reCAPTCHA token (skip if not configured)
+      let token = null;
+      if (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY && process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY !== 'test-key') {
+        token = await executeRecaptcha('contact_form');
+        if (!token) throw new Error('Failed to verify captcha. Please try again.');
+      }
 
       const response = await fetch('/api/contact', {
         method: 'POST',

@@ -35,6 +35,16 @@ const flipCard = async (gameId: string, row: number, col: number): Promise<Memor
   return res.json();
 };
 
+const clearFlippedCards = async (gameId: string): Promise<MemoryGridGameState> => {
+  const res = await fetch('/api/games/memory-grid', {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ gameId }),
+  });
+  if (!res.ok) throw new Error('Failed to clear flipped cards');
+  return res.json();
+};
+
 const MemoryGridGame: React.FC = () => {
   const [game, setGame] = useState<MemoryGridGameState | null>(null);
   const [loading, setLoading] = useState(false);
@@ -72,13 +82,15 @@ const MemoryGridGame: React.FC = () => {
     try {
       const updatedGame = await flipCard(game._id, row, col);
       setGame(updatedGame);
-      // If two cards were just flipped, briefly show them before hiding if not matched
-      if (updatedGame.flipped.length === 0 && !updatedGame.isGameOver) {
+      
+      // Check if this was the second card of a pair and they don't match
+      if (updatedGame.flipped.length === 2 && !updatedGame.isGameOver) {
+        // This was a wrong match - show both cards briefly before hiding them
         setTimeout(async () => {
-          const refreshed = await fetchGame(game._id);
-          setGame(refreshed);
+          const clearedGame = await clearFlippedCards(game._id);
+          setGame(clearedGame);
           setFlipping(false);
-        }, 800);
+        }, 500); // Show for 0.5 seconds
       } else {
         setFlipping(false);
       }
